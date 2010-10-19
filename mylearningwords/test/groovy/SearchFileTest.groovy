@@ -29,12 +29,15 @@ public class SearchFileTest extends GroovyTestCase {
 		
 		def finder = text =~ /([^.]*bilbo+[.]\s*)/
 		
-		println finder.count
+		def counter = 0
 		
 		(0..<finder.count).each {
 			def chunk = finder[it][0]
+			counter++
 			println chunk
 		}
+		
+		assert counter > 0 
 		
 	}
 	
