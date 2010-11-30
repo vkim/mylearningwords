@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 
 public class MyHashtable implements IHashTable {
 
@@ -52,5 +54,11 @@ public class MyHashtable implements IHashTable {
 		
 		return count;
 	}
+	
+	public String toString() {
+		
+		return Arrays.toString(table);
+	}
+	
 
 }
