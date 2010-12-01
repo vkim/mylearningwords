@@ -1,3 +1,4 @@
+import java.awt.Container;
 import java.util.HashSet;
 
 import junit.framework.TestCase;
@@ -38,38 +39,54 @@ public class MhashTableTest extends TestCase {
 		}
 		
 		assertEquals(MyHashtable.loadfactor, table.size());
-		
-		System.out.println(table);
 	}
 	
 	public void testAddingItemsWithTheSameHashValue() {
 		
-		HashSet tabs = new HashSet();
+		table.add(new Person(4));
+		table.add(new Person(3));
 		
-		tabs.add(new Person(4));
-		tabs.add(new Person(3));
+		assertEquals(2, table.size());
+	}
+	
+	public void testContainItemWithDifferentHashes() {
 		
-		assertEquals(1, tabs.size());
+		for(int i = 4; i < MyHashtable.loadfactor + 4; i++ ) {
+			table.add(String.valueOf(i));
+		}
 		
-		System.out.println(new Person(4).hashCode());
-		System.out.println(new Person(3).hashCode());
+		assertEquals(MyHashtable.loadfactor, table.size());
+		assertTrue(table.contains(String.valueOf(4)));  
+	}
+	
+	public void testContainsItemWithTheSameHash() {
+		
+		for(int i = 0; i < MyHashtable.loadfactor; i++ ) {
+			table.add(new Person(i));
+		}
+		
+		assertEquals(MyHashtable.loadfactor, table.size());
+		assertFalse(table.contains(new Person(1000)));
 	}
 
 	class Person {
 		
-		int i;
+		public int i;
 		
 		Person(int i) {
 			this.i = i;
 		}
 		
 		public boolean equals(Object o) {
-			return false;
+			return o instanceof Person && ((Person)o).i == this.i;
 		}
 		
 		public int hashCode() {
-			
 			return 5;
+		}
+		
+		public String toString() {
+			return "hash: " + hashCode() + ", value: " + i;
 		}
 	}
 	
