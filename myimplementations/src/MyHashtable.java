@@ -21,14 +21,29 @@ public class MyHashtable implements IHashTable {
 		
 		if(item != null) {
 			
-			int hash = adjustHash(item.hashCode());
+			int index = firstStep(item.hashCode());
 			
-			table[hash] = item;
-			
+			index = findNextAvailableSlot(index, item);
+			table[index] = item;
 		}
 	}
 	
-	private int adjustHash(int code) {
+	private int findNextAvailableSlot(int index, Object item) {
+		
+		for(int i = 0; i < loadfactor; i++) {
+			
+			int k = (i + index) % loadfactor; 
+			if((table[k] != null && item.equals(table[k]))      
+			         || table[k] == null) {
+				
+				return k;
+			}
+		}
+		
+		return index;
+	}
+
+	private int firstStep(int code) {
 		int ret = code < 0 ? (code * -1) : code; 
 		ret = ret % loadfactor;
 		
@@ -37,8 +52,21 @@ public class MyHashtable implements IHashTable {
 
 	@Override
 	public boolean contains(Object i) {
-		// TODO Auto-generated method stub
+		
+		int index = firstIndex(i);
+		
+		int goodslot = findNextAvailableSlot(index, i);
+		
+		if(table[goodslot] != null && i.equals(table[goodslot])) {
+			return true;
+		}
+		
 		return false;
+	}
+
+	private int firstIndex(Object i) {
+		
+		return i.hashCode() % loadfactor;
 	}
 
 	@Override
