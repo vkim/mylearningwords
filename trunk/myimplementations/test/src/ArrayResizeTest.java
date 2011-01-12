@@ -1,3 +1,5 @@
+import java.util.BitSet;
+
 import org.junit.Test;
 
 import junit.framework.TestCase;
@@ -19,7 +21,7 @@ public class ArrayResizeTest extends TestCase {
 	}
 	
 	@Test
-	public void testStringUnique() {
+	public void testStringUniqueIntArrayMap() {
 		
 //		String sequence = "qwerqwer" ; 
 		String sequence = "qwertyuiop[]asdfghjkl;'zxcvbnm,.";
@@ -40,6 +42,31 @@ public class ArrayResizeTest extends TestCase {
 		}
 		
 		assertTrue(unique);
+	}
+	
+	@Test
+	public void testStringUniqueBitMapArray() {
+		assertTrue(areAllCharactersUniqueBitMap("qwertyuiop[]asdfghjkl;'zxcvbnm,."));
+		assertFalse(areAllCharactersUniqueBitMap("qwerqwer"));
+	}
+	
+	private boolean areAllCharactersUniqueBitMap(String sequence) {
+		
+		BitSet map = new BitSet(255);
+		boolean unique = true;
+		
+		for(int i = 0; i < sequence.length(); i++) {
+			
+			if(!map.get(sequence.charAt(i))) {
+				map.set(sequence.charAt(i));
+			}
+			else {
+				unique = false;
+				break;
+			}
+		}
+		
+		return unique;
 	}
 	
 }
