@@ -11,26 +11,26 @@ import static SearchFile.*
 
 class GooglePronunciation {
 
-static def textToSpeach(word, wavFile) {   
-   
-    def url = new URL("http://translate.google.com/translate_tts?q=" + URLEncoder.encode(word))
-    def connection = url.openConnection()
-    connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.0.6) Gecko/2009011912 Firefox/3.0.6")  
-    
-    if(connection.responseCode == 200){              
-        
-        new BufferedInputStream(connection.getInputStream()).withStream() {
-            convertMp3ToWav(it, wavFile)    
-        }        
-                
-    }
-    else{
-        println "An error occurred:"
-        println connection.responseCode
-        println connection.responseMessage
-    }
-
-}
+	static def wordToSpeach(Word word, wavFile) {   
+	   
+	    def url = new URL("http://translate.google.com/translate_tts?tl=${word.lang}&q=" + URLEncoder.encode(word.value))
+	    def connection = url.openConnection()
+	    connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.0.6) Gecko/2009011912 Firefox/3.0.6")  
+	    
+	    if(connection.responseCode == 200){              
+	        
+	        new BufferedInputStream(connection.getInputStream()).withStream() {
+	            convertMp3ToWav(it, wavFile)    
+	        }        
+	    }
+	    else{
+	        println "An error occurred:"
+	        println connection.responseCode
+	        println connection.responseMessage
+	    }
+	
+	}
+	
     static def convertMp3ToWav(input, wavFile) {
     
         Converter conv = new Converter();     
@@ -63,7 +63,27 @@ static def textToSpeach(word, wavFile) {
 	  System.out.print("]");
 	} 
 	
-
+	static void textToSpeach(List<Word> words, String targetDir, boolean progressBar) {
+		
+		new File(targetDir).mkdirs()
+		
+		def assocList = new File(targetDir + '/assoc.lst')
+		
+		def percentageIndex = 0, sizeDic = words.size()
+		
+		for(Word word in words) {
+			def fileName = (word.trim() =~ / +/).replaceAll('_')
+			
+			wordToSpeach(word, targetDir + '/' + fileName + '.wav')
+			assocList << word.value + '\t' + fileName + '.wav\n'
+			
+			Thread.sleep 1000
+			
+			updateProgress((percentageIndex++)/sizeDic)
+		}
+	}
+	
+	
     public static void main(String[] args) {
         if(args.length != 2) {
             println('Usage: Dictionary_file directory_wavFiles')
@@ -72,25 +92,13 @@ static def textToSpeach(word, wavFile) {
         } 
         
         def dictionaryMap = SearchFile.getDictionary(args[0])
-        println "Size of the dictionary: " + dictionaryMap.keySet().size()
+		def wordList = Word.toWordsArray(dictionaryMap.keySet().asList())
+		
+        println "Size of the dictionary: " + wordList.size()
         
 		def outputDir = args[1]
-		new File(outputDir).mkdirs()
 		
-		def assocList = new File(outputDir + '/assoc.lst')
-		
-		def percentageIndex = 0, sizeDic = dictionaryMap.keySet().size() 		
-		
-        for(def word in dictionaryMap.keySet()) {
-			def trimWord = (word =~ /\([a-zA-Z ,]+\)/).replaceAll('').replaceAll(/\s*$/, '')
-			def fileName = (trimWord =~ / +/).replaceAll('_')
-            textToSpeach(trimWord, outputDir + '/' + fileName + '.wav')
-			assocList << trimWord + '\t' + fileName + '.wav\n' 
-			
-			Thread.sleep 1000
-			
-			updateProgress((percentageIndex++)/sizeDic)
-        }
+		textToSpeach(wordList, outputDir, true) 
     }
 
 }
