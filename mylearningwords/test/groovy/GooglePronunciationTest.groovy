@@ -1,3 +1,5 @@
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -47,6 +49,27 @@ public class GooglePronunciationTest {
 		GooglePronunciation.textToSpeach(words, wavDir, progressBar)
 		
 		assertEquals(7, new File(wavDir).list()?.length)
+	}
+	
+	@Test
+	void testProcess() {
+		
+		def sourceFile = 'myfile.txt'
+		def outputDir = 'outputdir/mdir'
+		
+		def engine = new GooglePronunciation()
+		
+		//mock
+		engine.metaClass.textToSpeach = { List<Word> words, String targetDir, boolean progressBar ->
+
+		}
+		SearchFile.metaClass.static.getDictionary = { src ->
+			assertEquals('myfile.txt', src)
+			
+			return ['i':'ti', 'love':'tlove', 'you':'tyou']
+		}
+		
+		engine.process(sourceFile, outputDir)
 	}
 	
 }

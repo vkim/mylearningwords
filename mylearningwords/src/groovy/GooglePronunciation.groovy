@@ -63,7 +63,7 @@ class GooglePronunciation {
 	  System.out.print("]");
 	} 
 	
-	static void textToSpeach(List<Word> words, String targetDir, boolean progressBar) {
+	void textToSpeach(List<Word> words, String targetDir, boolean progressBar) {
 		
 		new File(targetDir).mkdirs()
 		
@@ -83,6 +83,15 @@ class GooglePronunciation {
 		}
 	}
 	
+	void process(sourceFile, outputDir) {
+		
+		def dictionaryMap = SearchFile.getDictionary(sourceFile)
+		def wordList = Word.toWordsArray(dictionaryMap.keySet().asList())
+		
+		println "Size of the dictionary: " + wordList.size()
+		
+		textToSpeach(wordList, outputDir, true)
+	}
 	
     public static void main(String[] args) {
         if(args.length != 2) {
@@ -91,14 +100,11 @@ class GooglePronunciation {
             System.exit(1);
         } 
         
-        def dictionaryMap = SearchFile.getDictionary(args[0])
-		def wordList = Word.toWordsArray(dictionaryMap.keySet().asList())
-		
-        println "Size of the dictionary: " + wordList.size()
-        
 		def outputDir = args[1]
+		def dicFile = args[0]
 		
-		textToSpeach(wordList, outputDir, true) 
+		def engine = new GooglePronunciation()
+		engine.process(dicFile, outputDir)
     }
 
 }
