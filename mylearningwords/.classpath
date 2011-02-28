@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry exported="true" kind="con" path="GROOVY_SUPPORT"/>
+	<classpathentry kind="con" path="GROOVY_SUPPORT" exported="true"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="lib/jl1.0.1.jar"/>
 	<classpathentry kind="output" path="build"/>
+	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/groovy"/>
+	<classpathentry kind="src" path="src/test/groovy"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
+	<classpathentry kind="lib" path="C:/Users/Vitaliy/.gradle/cache/asm/asm-analysis/jars/asm-analysis-3.2.jar" exported="true"/>
+	<classpathentry sourcepath="C:/Users/Vitaliy/.gradle/cache/org.codehaus.groovy/groovy/sources/groovy-1.7.8-sources.jar" kind="lib" path="C:/Users/Vitaliy/.gradle/cache/org.codehaus.groovy/groovy/jars/groovy-1.7.8.jar" exported="true"/>
+	<classpathentry kind="lib" path="C:/Users/Vitaliy/.gradle/cache/de.huxhorn.sulky/de.huxhorn.sulky.3rdparty.jlayer/jars/de.huxhorn.sulky.3rdparty.jlayer-1.0.jar" exported="true"/>
+	<classpathentry kind="lib" path="C:/Users/Vitaliy/.gradle/cache/antlr/antlr/jars/antlr-2.7.7.jar" exported="true"/>
+	<classpathentry kind="lib" path="C:/Users/Vitaliy/.gradle/cache/asm/asm-util/jars/asm-util-3.2.jar" exported="true"/>
+	<classpathentry sourcepath="C:/Users/Vitaliy/.gradle/cache/junit/junit/sources/junit-4.7-sources.jar" kind="lib" path="C:/Users/Vitaliy/.gradle/cache/junit/junit/jars/junit-4.7.jar" exported="true"/>
+	<classpathentry kind="lib" path="C:/Users/Vitaliy/.gradle/cache/asm/asm-tree/jars/asm-tree-3.2.jar" exported="true"/>
+	<classpathentry kind="lib" path="C:/Users/Vitaliy/.gradle/cache/asm/asm-commons/jars/asm-commons-3.2.jar" exported="true"/>
+	<classpathentry kind="lib" path="C:/Users/Vitaliy/.gradle/cache/asm/asm/jars/asm-3.2.jar" exported="true"/>
 </classpath>
