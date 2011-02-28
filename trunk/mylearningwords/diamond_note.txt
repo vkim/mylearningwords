@@ -1,2 +1,0 @@
-next time to continue:
-I need cut the file of diamond_new.txt from the position 768 and then choose new words.
