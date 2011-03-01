@@ -1,8 +1,11 @@
+import org.junit.*;
 
+public class SearchFileTest {
+	
 
-public class SearchFileTest extends GroovyTestCase {
-	
-	
+	/**
+	 * TODO next function in todo list	
+	 */
 	void testWordCount() {
 		
 		def text = new File('resources/fulltext/hobbit.txt').getText()
@@ -12,6 +15,7 @@ public class SearchFileTest extends GroovyTestCase {
 		assert counts > 100
 	}
 	
+	@Test
 	void testGetWordStatisticAgainstDictionary() {
 		
 		def text = new File('resources/fulltext/hobbit.txt').getText()
@@ -20,6 +24,7 @@ public class SearchFileTest extends GroovyTestCase {
 		
 		SearchFile.produceWordsStatistics(dic, text) 
 	}
+	
 	
 	void testWordContext() {
 		

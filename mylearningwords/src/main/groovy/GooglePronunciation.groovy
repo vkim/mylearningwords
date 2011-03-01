@@ -77,9 +77,11 @@ class GooglePronunciation {
 			wordToSpeach(word, targetDir + '/' + fileName + '.wav')
 			assocList << word.value + '\t' + fileName + '.wav\n'
 			
-			Thread.sleep 1000
+			Thread.sleep 500
 			
-			updateProgress((percentageIndex++)/sizeDic)
+			if(progressBar) {
+				updateProgress((percentageIndex++)/sizeDic)
+			}
 		}
 	}
 	
