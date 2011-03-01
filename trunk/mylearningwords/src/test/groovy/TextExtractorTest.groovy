@@ -4,16 +4,17 @@ import org.junit.*;
 
 class TextExtractorTest {
 	
-	@Test
+	/*
+	 * TODO to be implemented
+	 */
 	void testExtractWords() {
 		
 		def extractor = new TextExtractor()
 		
 		def list = extractor.createExtractedList(sample1)
-		
+
 		assert list
 		assert list.size() > 20 && list.size() < 100
-		
 	}
 	
 	def sample1 = '''

@@ -1,6 +1,7 @@
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.After;
 import org.junit.Test;
 
 import static org.junit.Assert.*
@@ -17,6 +18,11 @@ public class GooglePronunciationTest {
 		new File(buildDir).mkdirs()
 	}
 	
+	@After
+	void after() {
+		SearchFile.metaClass = null
+	}
+	
 	@Test
 	void testWordToSpeachEnglish() {
 		
@@ -30,9 +36,9 @@ public class GooglePronunciationTest {
 	@Test
 	void testWordToSoundRussian() {
 		
-		String wavFile = buildDir + "привет.wav"
+		String wavFile = buildDir + "яблочко.wav"
 		
-		GooglePronunciation.wordToSpeach(new Word('привет', 'ru'), wavFile)
+		GooglePronunciation.wordToSpeach(new Word('яблочко', 'ru'), wavFile)
 		
 		assertTrue(new File(wavFile).exists())
 	}
@@ -43,10 +49,10 @@ public class GooglePronunciationTest {
 		def progressBar = false
 		
 		def words = Word.toWordsArray(['I', 'love', 'you', 'so', 'much'])
-		words.add(new Word('любовь', 'ru'))
+		words.add(new Word('танцевать', 'ru'))
 		def wavDir = buildDir + '/wordsList'
 		
-		GooglePronunciation.textToSpeach(words, wavDir, progressBar)
+		new GooglePronunciation().textToSpeach(words, wavDir, progressBar)
 		
 		assertEquals(7, new File(wavDir).list()?.length)
 	}
