@@ -27,35 +27,5 @@ had been all but dead until that point. Sales were down to
 	
 	'''	
 	
-	@Test
-	void testBookAnalysis() {
-		
-		println 'mystery ' +  mystery(2)
-		println 'mystery1 ' +  mystery1(2)
-		
-	}
-	
-	def mystery(n) {
-		def r = 0
-		for(def i = 1; i <= n-1; i++ ) {
-			for(def j = i+1; j <= n ; j++) {
-				for(def k=1; k <= j; k++) {
-					r += 1
-				}
-			}
-		} 
-		
-		return r
-	}
-	
-	def mystery1(n) {
-		def sum = 0;
-		for( def i = 0; i < n; i++)
-			for( def j = i; j < n; j++)
-				sum++;
-		
-		return sum
-	}
-	
 }
 
