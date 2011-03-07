@@ -2,6 +2,8 @@
 class Word {
 
 	String value;
+	String translation;
+	String transcript;
 	String lang = 'en';
 	
 	/**

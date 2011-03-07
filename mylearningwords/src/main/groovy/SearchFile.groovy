@@ -56,8 +56,7 @@ class SearchFile {
             output << line + '\t' + newDic[line] + '\n'
         }
         
-        output.close()
-        
+        output.close()        
     }   
     
     /**
