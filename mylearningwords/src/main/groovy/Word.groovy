@@ -3,7 +3,7 @@ class Word {
 
 	String value;
 	String translation;
-	String transcript;
+	String transcription;
 	String lang = 'en';
 	
 	/**
@@ -24,6 +24,20 @@ class Word {
 		this.lang = lang
 	}
 	
+	
+	/**
+	 * 
+	 * @param value 
+	 * @param translation
+	 * @param transcription
+	 */
+	public Word(String value, String transcription, String translation) {
+		super();
+		this.value = value;
+		this.translation = translation;
+		this.transcription = transcription;
+	}
+
 	static def toWordsArray(words) {
 		
 		if(!words) {
