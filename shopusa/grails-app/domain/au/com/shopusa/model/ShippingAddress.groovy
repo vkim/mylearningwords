@@ -1,9 +1,8 @@
 package au.com.shopusa.model
 
-class Order {
+class ShippingAddress {
 
-	
-	Double cost
+	User client
 	
     static constraints = {
     }
