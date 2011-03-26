@@ -66,14 +66,26 @@ environments {
 }
 
 // log4j configuration
+log4j.logger.grails.app.filters='debug'
+grails.debug.enabled='true'
 log4j = {
     // Example of changing the log pattern for the default console
     // appender:
     //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
+    appenders {
+	    console name:'stdout', layout:pattern(conversionPattern: '%p [%t] %d{dd/MM/yyyy HH:mm:ss} %c | %m%n')
+			
+			//undocumented NullAppender to prevent stacktrace log file creation 
+			'null' name:'stacktrace'
+    }
 
+	root {
+		info 'stdout'
+		additivity = true
+	}
+	
+	debug 'au.com.shopusa'
+	
     error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
            'org.codehaus.groovy.grails.web.pages', //  GSP
            'org.codehaus.groovy.grails.web.sitemesh', //  layouts
@@ -88,3 +100,8 @@ log4j = {
 
     warn   'org.mortbay.log'
 }
+
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'au.com.shopusa.model.User'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'au.com.shopusa.model.UserRole'
+grails.plugins.springsecurity.authority.className = 'au.com.shopusa.model.Role'

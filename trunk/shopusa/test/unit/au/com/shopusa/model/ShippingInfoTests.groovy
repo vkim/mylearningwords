@@ -2,7 +2,7 @@ package au.com.shopusa.model
 
 import grails.test.*
 
-class OrderControllerTests extends ControllerUnitTestCase {
+class ShippingInfoTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
     }
