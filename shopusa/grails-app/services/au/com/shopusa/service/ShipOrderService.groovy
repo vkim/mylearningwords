@@ -15,11 +15,6 @@ class ShipOrderService {
 		order.save()
 		
 		log.info('Order created: ' + order);
-		if(order.hasErrors()) {
-			println 'Order has errors: ' + order.errors
-		} else {
-			println ('Order created: ' + order);
-		}
 		
 		return order
 	}
@@ -48,5 +43,14 @@ class ShipOrderService {
 		}
 		
 		return OrderItem.findAll('from OrderItem as i where i.shipOrder.id = ?', [orderId])
+	}
+	
+	def getOrders(user) {
+		
+		if(! user) {
+			return []
+		}
+		
+		return ShipOrder.findAllByClient(user)
 	}
 }

@@ -10,7 +10,7 @@
     <body>
         <div class="nav">
             <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-            <span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
+            <span class="menuButton"><g:link class="create" action="additem" params="[id: id]"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
         </div>
         <div class="body">
             <h1><g:message code="default.list.label" args="[entityName]" /></h1>
@@ -32,7 +32,7 @@
                         
                             <th><g:message code="orderItem.shipOrder.label" default="Ship Order" /></th>
                         
-                            <g:sortableColumn property="throwBox" title="${message(code: 'orderItem.throwBox.label', default: 'Throw Box')}" />
+                            <g:sortableColumn property="throwWrap" title="${message(code: 'orderItem.throwWrap.label', default: 'Throw Wrapping')}" />
                         
                         </tr>
                     </thead>
@@ -50,7 +50,7 @@
                         
                             <td>${fieldValue(bean: orderItemInstance, field: "shipOrder")}</td>
                         
-                            <td><g:formatBoolean boolean="${orderItemInstance.throwBox}" /></td>
+                            <td><g:formatBoolean boolean="${orderItemInstance.throwWrap}" /></td>
                         
                         </tr>
                     </g:each>

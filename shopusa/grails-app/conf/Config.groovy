@@ -84,7 +84,7 @@ log4j = {
 		additivity = true
 	}
 	
-	debug 'au.com.shopusa'
+	debug 'grails.app'
 	
     error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
            'org.codehaus.groovy.grails.web.pages', //  GSP

@@ -23,10 +23,11 @@
                 <g:renderErrors bean="${orderItemInstance}" as="list" />
             </div>
             </g:hasErrors>
-            <g:form action="save" >
+            <g:form action="saveitem" >
                 <div class="dialog">
                     <table>
                         <tbody>
+                        	<g:hiddenField name="id" value="${id}"/>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
@@ -66,10 +67,10 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="throwBox"><g:message code="orderItem.throwBox.label" default="Throw Box" /></label>
+                                    <label for="throwWrap"><g:message code="orderItem.throwWrap.label" default="Throw wrappings" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean: orderItemInstance, field: 'throwBox', 'errors')}">
-                                    <g:checkBox name="throwBox" value="${orderItemInstance?.throwBox}" />
+                                <td valign="top" class="value ${hasErrors(bean: orderItemInstance, field: 'throwWrap', 'errors')}">
+                                    <g:checkBox name="throwWrap" value="${orderItemInstance?.throwWrap}" />
                                 </td>
                             </tr>
                         

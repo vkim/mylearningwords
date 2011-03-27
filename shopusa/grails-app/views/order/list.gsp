@@ -31,6 +31,8 @@
                             <th><g:message code="shipOrder.shippingInfo.label" default="Shipping Info" /></th>
                         
                             <g:sortableColumn property="trackNumber" title="${message(code: 'shipOrder.trackNumber.label', default: 'Track Number')}" />
+                            
+                            <g:sortableColumn property="status" title="${message(code: 'shipOrder.status.label', default: 'Status')}" />
                         
                         </tr>
                     </thead>
@@ -38,7 +40,7 @@
                     <g:each in="${shipOrderInstanceList}" status="i" var="shipOrderInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         
-                            <td><g:link action="show" id="${shipOrderInstance.id}">${fieldValue(bean: shipOrderInstance, field: "id")}</g:link></td>
+                            <td><g:link action="itemlist" id="${shipOrderInstance.id}">${fieldValue(bean: shipOrderInstance, field: "id")}</g:link></td>
                         
                             <td>${fieldValue(bean: shipOrderInstance, field: "client")}</td>
                         
@@ -47,6 +49,8 @@
                             <td>${fieldValue(bean: shipOrderInstance, field: "shippingInfo")}</td>
                         
                             <td>${fieldValue(bean: shipOrderInstance, field: "trackNumber")}</td>
+                            
+                            <td>${fieldValue(bean: shipOrderInstance, field: "status")}</td>
                         
                         </tr>
                     </g:each>

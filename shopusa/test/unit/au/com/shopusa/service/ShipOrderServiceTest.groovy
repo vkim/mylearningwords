@@ -80,4 +80,19 @@ class ShipOrderServiceTest extends GrailsUnitTestCase {
 		assertEquals(0, items.size())
 	}
 	
+	public void testGetOrders() {
+
+		def user = new User(email: 'useru')
+		
+		mockDomain(ShipOrder, [new ShipOrder(client: user), new ShipOrder(client: user)
+			, new ShipOrder(client: new User(email: 'other'))])		
+		
+		
+		//replay
+		def orders = service.getOrders(user)
+		
+		//verify
+		assertEquals(2, orders.size())
+	}
+	
 }
