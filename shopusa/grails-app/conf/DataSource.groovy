@@ -1,9 +1,19 @@
 dataSource {
     pooled = true
-    driverClassName = "org.hsqldb.jdbcDriver"
-    username = "sa"
-    password = ""
+    driverClassName = "com.mysql.jdbc.Driver"
+    username = "shopusa"
+    password = "3"
 //	logSql = true
+	properties {
+		minEvictableIdleTimeMillis = 1800000
+		timeBetweenEvictionRunsMillis = 1800000
+		numTestsPerEvictionRun=3
+		
+		validationQuery = "SELECT 1"
+		testOnBorrow=true
+		testWhileIdle=true
+		testOnReturn=true
+	}
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -14,20 +24,25 @@ hibernate {
 environments {
     development {
         dataSource {
+			dbname = "shopusa_dev" 
             dbCreate = "create-drop" // one of 'create', 'create-drop','update'
-            url = "jdbc:hsqldb:mem:devDB"
+            url = "jdbc:mysql://localhost/$dbname?autoReconnect=true"
         }
     }
     test {
         dataSource {
+			dbname = "shopusa_dev"
             dbCreate = "update"
-            url = "jdbc:hsqldb:mem:testDb"
+            url = "jdbc:mysql://localhost/$dbname?autoReconnect=true"
         }
     }
     production {
         dataSource {
+			dbname = "shopusa"
             dbCreate = "update"
-            url = "jdbc:hsqldb:file:prodDb;shutdown=true"
+			username = "usershop"
+			password = "b3auty"
+            url = "jdbc:mysql://localhost/$dbname?autoReconnect=true"
         }
     }
 }
