@@ -36,13 +36,13 @@ class OrderControllerIntegrationTests extends ControllerUnitTestCase {
 		reset()
 		
 		controller.params.name = 'notebook'
-		controller.params.orderId = order.id 
+		controller.params.id = order.id 
 		
 		//replay
 		controller.saveitem()
 		
 		//verify
-		assertEquals 'show', controller.redirectArgs.action
+		assertEquals 'itemlist', controller.redirectArgs.action
 		assertEquals(1, ShipOrder.get(order.id).orderItems.size())
     }
 }

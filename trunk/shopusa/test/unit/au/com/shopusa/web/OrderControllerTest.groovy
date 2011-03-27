@@ -24,11 +24,12 @@ class OrderControllerTest extends ControllerUnitTestCase {
 		controller.shipOrderService = mock.proxyInstance();
 		
 		//replay
-		controller.create()
+		def model = controller.create()
 		
 		//verify
 		assertEquals 'itemlist', controller.redirectArgs.action
-		assertEquals 2, controller.redirectArgs.model.orderInstance.id
+		println controller.redirectArgs
+		assertEquals 2, controller.redirectArgs.id
 		mock.verify(controller.shipOrderService)
 	}
 	
@@ -39,14 +40,14 @@ class OrderControllerTest extends ControllerUnitTestCase {
 		
 		controller.shipOrderService = mock.proxyInstance(); 
 		
-		controller.params.orderId = 1 
+		controller.params.id = 1 
 		
 		//replay
 		controller.saveitem() 
 		
 		//verify
 		mock.verify(controller.shipOrderService)
-		assertEquals 'show', controller.redirectArgs.action
+		assertEquals 'itemlist', controller.redirectArgs.action
 		assertEquals 1, controller.redirectArgs.id
 	}
 	
@@ -57,7 +58,7 @@ class OrderControllerTest extends ControllerUnitTestCase {
 		
 		controller.shipOrderService = mock.proxyInstance(); 
 		
-		controller.params.orderId = 1 
+		controller.params.id = 2
 		
 		//replay
 		controller.saveitem() 
@@ -65,6 +66,7 @@ class OrderControllerTest extends ControllerUnitTestCase {
 		//verify
 		mock.verify(controller.shipOrderService)
 		assertEquals 'additem', controller.renderArgs.view
+		assertEquals 2, controller.renderArgs.id
 	}
 	
 	public void testItemList() {
@@ -77,13 +79,36 @@ class OrderControllerTest extends ControllerUnitTestCase {
 		controller.shipOrderService = mock.proxyInstance();
 		
 		//replay
-		controller.params.orderId = 108;
+		controller.params.id = '108';
 		def model = controller.itemlist()
 		
 		//verify
 		controller.renderArgs.view = 'itemlist'
 		mock.verify(controller.shipOrderService)
 		assertEquals(2, model.orderItemInstanceList.size())
+		assertEquals('108', model.id)
+	}
+	
+	
+	public void testGetOrders() {
+		
+		def tuser = new User(email: 'testuser')
+		
+		//mock
+		def mock = new MockFor(ShipOrderService)
+		mock.demand.getOrders { user -> 
+			assertEquals(tuser, user) 
+			['','', ''] }
+		controller.shipOrderService = mock.proxyInstance();
+		
+		controller.metaClass.getCurrentUser = {tuser}
+		
+		//replay
+		def model = controller.list()
+		
+		//verify
+		controller.renderArgs.view = 'list'
+		assertEquals(3, model.shipOrderInstanceList.size())
 	}
 	
 }

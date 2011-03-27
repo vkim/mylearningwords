@@ -15,6 +15,8 @@ class OrderItem implements Serializable {
     static constraints = {
     }
 	
-	
+	String toString() {
+		"$name, $comment"
+	}
 	
 }

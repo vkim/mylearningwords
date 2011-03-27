@@ -17,20 +17,27 @@ class OrderController {
 
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [orderItemInstanceList: OrderItem.list(params), orderItemInstanceTotal: OrderItem.count()]
+		
+		def user = getCurrentUser()
+		
+		def orders = shipOrderService.getOrders(user)
+		
+        [shipOrderInstanceList: orders, shipOrderInstanceTotal: orders.count()]
     }
 
     def create = {
 		
 		def order = shipOrderService.createOrder(User.findByEmail('normal@com.au'))
 		
-		redirect(action: "itemlist", model: [orderInstance: order])
+		log.debug 'Order created, id = ' + order.id
+		
+		redirect(action: "itemlist", id: order.id)
     }
 	
 	def additem = {
 		def orderItemInstance = new OrderItem()
 		orderItemInstance.properties = params
-		return [orderItemInstance: orderItemInstance]
+		return [orderItemInstance: orderItemInstance, id: params.id]
 	}
 	
 	def saveitem = {
@@ -38,22 +45,22 @@ class OrderController {
 		def item = new OrderItem()
 		item.properties = params
 		
-		def orderId = params.orderId
+		def orderId = params.id
 		
 		if(shipOrderService.addOrderItem(orderId, item)) {
-			redirect(action: "show", id: orderId)
+			redirect(action: "itemlist", id: orderId)
 		}
 		else {
-			render(view: "additem", model: [orderItemInstance: item])
+			render(view: "additem", model: [orderItemInstance: item], id: orderId)
 		}
 	}
 	
 	def itemlist = {
+		
 		params.max = Math.min(params.max ? params.int('max') : 10, 100)
 		
-		
-		def items = shipOrderService.getItems(params.orderId)
-		[orderItemInstanceList: items, orderItemInstanceTotal: items.count()]
+		def items = shipOrderService.getItems(Long.parseLong(params.id))
+		[orderItemInstanceList: items, orderItemInstanceTotal: items.count(), id: params.id]
 	}
 
     def save = {
@@ -137,6 +144,6 @@ class OrderController {
 	
 	
 	def getCurrentUser() {
-		
+		User.findByEmail('normal@com.au')
 	}
 }
