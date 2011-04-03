@@ -32,7 +32,7 @@ environments {
     test {
         dataSource {
 			dbname = "shopusa_dev"
-            dbCreate = "update"
+            dbCreate = "create-drop"
             url = "jdbc:mysql://localhost/$dbname?autoReconnect=true"
         }
     }
