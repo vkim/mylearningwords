@@ -1,13 +1,16 @@
 class UrlMappings {
 
 	static mappings = {
-		"/$controller/$action?/$id?"{
+		
+		"/$pageId"(controller:"cmsPageRendering")
+		
+		/*"/$controller/$action?/$id?"{
 			constraints {
 				// apply constraints here
 			}
-		}
+		}*/
 
-		"/"(view:"/index")
+		"/"(controller:"cmsPageRendering")
 		"500"(view:'/error')
 	}
 }
