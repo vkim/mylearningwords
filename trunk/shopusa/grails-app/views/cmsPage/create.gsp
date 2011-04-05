@@ -1,5 +1,3 @@
-
-
 <%@ page import="au.com.shopusa.cms.CmsPage" %>
 <html>
     <head>
@@ -7,6 +5,7 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'cmsPage.label', default: 'CmsPage')}" />
         <title><g:message code="default.create.label" args="[entityName]" /></title>
+        <ckeditor:resources />
     </head>
     <body>
         <div class="nav">
@@ -42,7 +41,9 @@
                                     <label for="content"><g:message code="cmsPage.content.label" default="Content" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: cmsPageInstance, field: 'content', 'errors')}">
-                                    <g:textField name="content" value="${cmsPageInstance?.content}" />
+                                    <ckeditor:editor name="content">
+                                    	${cmsPageInstance?.content}
+                                    </ckeditor:editor>
                                 </td>
                             </tr>
                         

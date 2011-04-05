@@ -105,3 +105,6 @@ log4j = {
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'au.com.shopusa.model.User'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'au.com.shopusa.model.UserRole'
 grails.plugins.springsecurity.authority.className = 'au.com.shopusa.model.Role'
+
+ckeditor.upload.image.browser=true
+ckeditor.upload.image.upload=true
