@@ -4,6 +4,8 @@ class CmsPageController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+	CmsPageRenderer cmsPageRenderer
+	
     def index = {
         redirect(action: "list", params: params)
     }
@@ -23,6 +25,7 @@ class CmsPageController {
         def cmsPageInstance = new CmsPage(params)
         if (cmsPageInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'cmsPage.label', default: 'CmsPage'), cmsPageInstance.id])}"
+			
             redirect(action: "show", id: cmsPageInstance.id)
         }
         else {
@@ -67,6 +70,10 @@ class CmsPageController {
             cmsPageInstance.properties = params
             if (!cmsPageInstance.hasErrors() && cmsPageInstance.save(flush: true)) {
                 flash.message = "${message(code: 'default.updated.message', args: [message(code: 'cmsPage.label', default: 'CmsPage'), cmsPageInstance.id])}"
+				
+				//reset cache
+				cmsPageRenderer.removeCmsPageFromCache cmsPageInstance.pageId
+				
                 redirect(action: "show", id: cmsPageInstance.id)
             }
             else {
@@ -85,6 +92,8 @@ class CmsPageController {
             try {
                 cmsPageInstance.delete(flush: true)
                 flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'cmsPage.label', default: 'CmsPage'), params.id])}"
+				
+				cmsPageRenderer.removeCmsPageFromCache cmsPageInstance.pageId
                 redirect(action: "list")
             }
             catch (org.springframework.dao.DataIntegrityViolationException e) {
