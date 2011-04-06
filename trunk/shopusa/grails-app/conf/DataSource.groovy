@@ -2,7 +2,7 @@ dataSource {
     pooled = true
     driverClassName = "com.mysql.jdbc.Driver"
     username = "shopusa"
-    password = "3"
+    password = "shopusa"
 //	logSql = true
 	properties {
 		minEvictableIdleTimeMillis = 1800000

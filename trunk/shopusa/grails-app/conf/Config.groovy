@@ -106,5 +106,21 @@ grails.plugins.springsecurity.userLookup.userDomainClassName = 'au.com.shopusa.m
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'au.com.shopusa.model.UserRole'
 grails.plugins.springsecurity.authority.className = 'au.com.shopusa.model.Role'
 
+grails.plugins.springsecurity.useSwitchUserFilter = true
+grails.plugins.springsecurity.switchUser.targetUrl = '/secure/'
+
+grails.plugins.springsecurity.controllerAnnotations.staticRules = [
+	'/':                              ['permitAll'],
+	'/register/**':                   ['permitAll'],
+	'/index.gsp':                     ['permitAll'],
+	'/js/**':                         ['permitAll'],
+	'/css/**':                        ['permitAll'],
+	'/images/**':                     ['permitAll'],
+	'/img/**':                     	  ['permitAll'],
+	'/j_spring_security_switch_user': ['ROLE_SUPERVISOR'],
+	'/**':                            ['ROLE_USER']
+]
+
+
 ckeditor.upload.image.browser=true
-ckeditor.upload.image.upload=true
+ckeditor.upload.image.upload=true 

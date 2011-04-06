@@ -4,7 +4,7 @@ import au.com.shopusa.model.Role
 import au.com.shopusa.model.ShippingAddress
 import au.com.shopusa.model.User
 import au.com.shopusa.model.UserRole
-
+ 
 class BootStrap {
 
 	def springSecurityService
@@ -18,7 +18,7 @@ class BootStrap {
 				break
 
 			case Environment.DEVELOPMENT:
-			    createIntegrationTestData()
+//			    createIntegrationTestData()
 				break
 
 			case Environment.PRODUCTION:
