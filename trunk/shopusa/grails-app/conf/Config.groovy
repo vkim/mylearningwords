@@ -9,7 +9,7 @@
 // if(System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
-
+ 
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = false
@@ -118,7 +118,7 @@ grails.plugins.springsecurity.controllerAnnotations.staticRules = [
 	'/images/**':                     ['permitAll'],
 	'/img/**':                     	  ['permitAll'],
 	'/j_spring_security_switch_user': ['ROLE_SUPERVISOR'],
-	'/**':                            ['ROLE_USER']
+	'/**':                            ['permitAll']
 ]
 
 

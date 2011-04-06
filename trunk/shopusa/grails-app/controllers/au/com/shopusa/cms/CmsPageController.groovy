@@ -34,6 +34,7 @@ class CmsPageController {
     }
 
     def show = {
+		println params.id
         def cmsPageInstance = CmsPage.get(params.id)
         if (!cmsPageInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'cmsPage.label', default: 'CmsPage'), params.id])}"
