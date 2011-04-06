@@ -48,12 +48,10 @@
 			<div id="navigation">
 
 				<ul class="tabbed">
-					<li><a href="index.html">Home</a></li>
-					<li class="current_page_item current_page_parent"><a href="product_details.html">Product Details</a></li>
-					<li><a href="blog_post.html">Blog Post</a></li>
-					<li><a href="archives.html">Archives</a></li>
-					<li><a href="style_demo.html">Style Demo</a></li>
-					<li><a href="empty_page.html">Empty Page</a></li>
+					<li class="current_page_item current_page_parent"><a href="home">Home</a></li>
+					<li><a href="fees">Fees</a></li>
+					<li><a href="faq">FAQ</a></li>
+					<li><a href="about">About us</a></li>
 				</ul>
 
 				<div class="clearer">&nbsp;</div>
@@ -63,15 +61,48 @@
 		</div>
 	</div>
 </div>
+<div id="content-wrapper">
+	<div class="center-wrapper">
+		
+		<div class="content">
 
-	<g:layoutBody />
+			<div id="main">
+
+				<g:layoutBody/>
+
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<div id="footer-wrapper">
+
+	<div class="center-wrapper">
+
+		<div id="footer">
+
+			<div class="left">
+			</div>
+
+			<div class="right">
+			</div>
+			
+			<div class="clearer">&nbsp;</div>
+
+		</div>
+
+	</div>
+
+</div>
 
 <div id="bottom">
 
 	<div class="center-wrapper">
 
 		<div class="left">
-			&copy; 2009 Website.com - Your Website Slogan <span class="text-separator">|</span> <a href="#">Privacy Policy</a> <span class="text-separator">|</span> <a href="#">Terms of Use</a> 
+			&copy; 2011 buycheaper.com.au - Cheaper on delivery <span class="text-separator">|</span> <a href="#">Privacy Policy</a> <span class="text-separator">|</span> <a href="#">Terms of Use</a> 
 		</div>
 
 		<div class="right">

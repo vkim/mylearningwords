@@ -39,10 +39,11 @@ environments {
     production {
         dataSource {
 			dbname = "shopusa"
-            dbCreate = "update"
+            dbCreate = "create-drop"
 			username = "usershop"
 			password = "b3auty"
-            url = "jdbc:mysql://localhost/$dbname?autoReconnect=true"
+			driverClassName = "javax.sql.DataSource"
+            url = "jdbc:cloudbees://shopusa"
         }
     }
 }
