@@ -37,13 +37,12 @@ environments {
         }
     }
     production {
-        dataSource {
+        dataSource {			
+			jndiName = "java:comp/env/jdbc/shopusa"
 			dbname = "shopusa"
-            dbCreate = "create-drop"
+            dbCreate = "update"
 			username = "usershop"
 			password = "b3auty"
-			driverClassName = "javax.sql.DataSource"
-            url = "jdbc:cloudbees://shopusa"
         }
     }
 }
