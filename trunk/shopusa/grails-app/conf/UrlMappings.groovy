@@ -8,7 +8,12 @@ class UrlMappings {
 			}
 		}*/
 		
+		"/register/$action?"(controller:"register")
+		
 		"/cmsPage/$action?/$id?"(controller:"cmsPage")
+		
+		"/login/$action?"(controller: "login")
+		"/logout/$action?"(controller: "logout")
 		
 		"/$pageId"(controller:"cmsPageRendering")
 		

@@ -42,7 +42,7 @@ class BootStrap {
 
 		//expert test user
 		String password = springSecurityService.encodePassword('password')
-		def testUser = new User(enabled: true, password: password, email: 'admin@com.au', shippingAddress: new ShippingAddress())
+		def testUser = new User(enabled: true, password: password, username: 'admin@com.au', shippingAddress: new ShippingAddress())
 		testUser.save(flush: true)
 
 		assert User.count() == 1
@@ -53,7 +53,7 @@ class BootStrap {
 		assert UserRole.count() == 2
 
 		//normal user
-		def normalUser = new User(enabled: true, password: password, email: 'normal@com.au', shippingAddress: new ShippingAddress())
+		def normalUser = new User(enabled: true, password: password, username: 'normal@com.au', shippingAddress: new ShippingAddress())
 		normalUser.save(flush: true)
 		assert User.count() == 2
 
