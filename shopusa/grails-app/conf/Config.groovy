@@ -65,6 +65,19 @@ environments {
 
 }
 
+grails {
+	mail {
+	  host = "smtp.gmail.com"
+	  port = 465
+	  username = "vitaliy.kim@gmail.com"
+	  password = "manon1herun"
+	  props = ["mail.smtp.auth":"true",
+			   "mail.smtp.socketFactory.port":"465",
+			   "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+			   "mail.smtp.socketFactory.fallback":"false"]
+	}
+ }
+
 // log4j configuration
 log4j.logger.grails.app.filters='debug'
 grails.debug.enabled='true'
@@ -121,6 +134,15 @@ grails.plugins.springsecurity.controllerAnnotations.staticRules = [
 	'/**':                            ['permitAll']
 ]
 
+//Spring security-ui plugin
+grails.plugins.springsecurity.ui.register.defaultRoleNames = ['ROLE_CLIENT']
+grails.plugins.springsecurity.ui.register.emailBody = '''\
+Hi,<br/>
+<br/>
+You (or someone pretending to be you) created an account with this email address.<br/>
+<br/>
+If you made the request, please click <a href="$url">here</a> to finish the registration.
+''' 
 
 ckeditor.upload.image.browser=true
 ckeditor.upload.image.upload=true 

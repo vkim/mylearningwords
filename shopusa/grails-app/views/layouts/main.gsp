@@ -6,6 +6,7 @@
 		<meta name="keywords" content="" />
 		<meta name="author" content="" />
 		<link rel="stylesheet" type="text/css" href="${resource(dir:'css',file:'style.css')}" media="screen"/>
+				<link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon"/>
 		<title><g:layoutTitle default="Grails" /></title>
 		<g:layoutHead />
 		<g:javascript library="application" />
@@ -28,10 +29,15 @@
 					<div id="help-wrapper">
 						<div id="help">
 
-							<a href="#">Contact us</a> <span class="text-separator">|</span>
-							<a href="#">F.A.Q</a> <span class="text-separator">|</span> <a
-								href="#">Sitemap</a>
-
+							<a href="<g:resource dir="/" file="faq" />">FAQ</a> <span class="text-separator">|</span>
+							<a href="<g:resource dir="/" file="register"/>">New account</a> <span class="text-separator">|</span> 
+							
+							<sec:ifLoggedIn>
+								<a href="<g:resource dir="/" file="logout"/>">Sign out</a>
+							</sec:ifLoggedIn>
+							<sec:ifNotLoggedIn>
+								<a href="<g:resource dir="/" file="login"/>">Sign in</a>
+							</sec:ifNotLoggedIn>
 						</div>
 					</div>
 
@@ -48,10 +54,9 @@
 			<div id="navigation">
 
 				<ul class="tabbed">
-					<li class="current_page_item current_page_parent"><a href="home">Home</a></li>
-					<li><a href="fees">Fees</a></li>
-					<li><a href="faq">FAQ</a></li>
-					<li><a href="about">About us</a></li>
+					<li class="current_page_item current_page_parent"><a href="<g:resource dir="/" file="home"/>">Home</a></li>
+					<li><a href="<g:resource dir="/" file="fees"/>">Fees</a></li>
+					<li><a href="<g:resource dir="/" file="about"/>">About us</a></li>
 				</ul>
 
 				<div class="clearer">&nbsp;</div>

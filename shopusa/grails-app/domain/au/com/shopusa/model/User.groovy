@@ -2,7 +2,7 @@ package au.com.shopusa.model
 
 class User {
 
-	String email
+	String username
 	String password
 	boolean enabled
 	boolean accountExpired
@@ -10,7 +10,7 @@ class User {
 	boolean passwordExpired
 	
 	static constraints = {
-		email blank: false, unique: true, email:true
+		username blank: false, unique: true, email:true
 		password blank: false
 	}
 

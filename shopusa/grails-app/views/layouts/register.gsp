@@ -62,12 +62,10 @@
 			<div id="navigation">
 
 				<ul class="tabbed">
-					<li><a href="index.html">Home</a></li>
-					<li class="current_page_item current_page_parent"><a href="product_details.html">Product Details</a></li>
-					<li><a href="blog_post.html">Blog Post</a></li>
-					<li><a href="archives.html">Archives</a></li>
-					<li><a href="style_demo.html">Style Demo</a></li>
-					<li><a href="empty_page.html">Empty Page</a></li>
+					<li class="current_page_item current_page_parent"><a href="home">Home</a></li>
+					<li><a href="fees">Fees</a></li>
+					<li><a href="faq">FAQ</a></li>
+					<li><a href="about">About us</a></li>
 				</ul>
 
 				<div class="clearer">&nbsp;</div>
