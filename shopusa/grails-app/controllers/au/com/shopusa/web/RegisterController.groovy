@@ -33,7 +33,6 @@ class RegisterController extends grails.plugins.springsecurity.ui.RegisterContro
 
 		if (!user.validate() || !user.save()) {
 
-			println 'user did not register' + user.errors
 		}
 		else {
 
@@ -45,8 +44,6 @@ class RegisterController extends grails.plugins.springsecurity.ui.RegisterContro
 			if (body.contains('$')) {
 				body = evaluate(body, [user: user, url: url])
 			}
-
-			println 'user registered! and email sending.'
 
 			mailService.sendMail {
 				to command.username
