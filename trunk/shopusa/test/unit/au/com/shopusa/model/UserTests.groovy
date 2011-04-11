@@ -15,7 +15,7 @@ class UserTests extends GrailsUnitTestCase {
 
     void testCreate() {
 
-		def user = new User(email: 'email@com.ru', password: 'qioewprqer', shippingAddress: new ShippingAddress())
+		def user = new User(username: 'email@com.ru', password: 'qioewprqer', shippingAddress: new ShippingAddress())
 		user.save()
 		
 		assertEquals 1, User.count()

@@ -27,6 +27,6 @@ class User {
 	}
 	
 	String toString() {
-		"$email"
+		"$username"
 	}
 }
