@@ -72,7 +72,9 @@
 		<div class="content">
 
 			<div id="main">
-
+				<g:if test="${flash.message}">
+		           <div class="success">${flash.message}</div>
+		        </g:if>
 				<g:layoutBody/>
 
 			</div>
