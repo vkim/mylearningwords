@@ -1,5 +1,3 @@
-
-
 <%@ page import="au.com.shopusa.model.OrderItem" %>
 <html>
     <head>
@@ -24,7 +22,7 @@
             </div>
             </g:hasErrors>
             <g:form action="saveitem" >
-                <div class="dialog">
+                <fieldset>
                     <table>
                         <tbody>
                         	<g:hiddenField name="id" value="${id}"/>
@@ -76,7 +74,7 @@
                         
                         </tbody>
                     </table>
-                </div>
+                </fieldset>
                 <div class="buttons">
                     <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" /></span>
                 </div>

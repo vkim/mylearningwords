@@ -27,7 +27,7 @@ class OrderController {
 
     def create = {
 		
-		def order = shipOrderService.createOrder(User.findByEmail('normal@com.au'))
+		def order = shipOrderService.createOrder(User.findByUsername('normal@com.au'))
 		
 		log.debug 'Order created, id = ' + order.id
 		
@@ -144,6 +144,6 @@ class OrderController {
 	
 	
 	def getCurrentUser() {
-		User.findByEmail('normal@com.au')
+		User.findByUsername('normal@com.au')
 	}
 }

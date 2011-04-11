@@ -22,7 +22,7 @@ class ShipOrderServiceTest extends GrailsUnitTestCase {
 
 		mockLogging ShipOrderService
 				
-		user = new User(email: 'email@com.ru', password: 'qioewprqer', shippingAddress: new ShippingAddress())
+		user = new User(username: 'email@com.ru', password: 'qioewprqer', shippingAddress: new ShippingAddress())
 		user.save()
 		
 		service = new ShipOrderService()

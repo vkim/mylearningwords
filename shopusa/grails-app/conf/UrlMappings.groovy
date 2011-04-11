@@ -15,6 +15,8 @@ class UrlMappings {
 		"/login/$action?"(controller: "login")
 		"/logout/$action?"(controller: "logout")
 		
+		"/order/$action?/$id?"(controller:"order")
+		
 		"/$pageId"(controller:"cmsPageRendering")
 		
 
