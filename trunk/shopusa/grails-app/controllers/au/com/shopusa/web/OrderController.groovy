@@ -60,7 +60,10 @@ class OrderController {
 		params.max = Math.min(params.max ? params.int('max') : 10, 100)
 		
 		def items = shipOrderService.getItems(Long.parseLong(params.id))
-		[orderItemInstanceList: items, orderItemInstanceTotal: items.count(), id: params.id]
+		
+		def user = getCurrentUser();
+		
+		[orderItemInstanceList: items, orderItemInstanceTotal: items.count(), id: params.id, user: user]
 	}
 
     def save = {

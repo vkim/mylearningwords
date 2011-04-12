@@ -87,6 +87,7 @@ class OrderControllerTest extends ControllerUnitTestCase {
 		mock.verify(controller.shipOrderService)
 		assertEquals(2, model.orderItemInstanceList.size())
 		assertEquals('108', model.id)
+		assertNotNull(model.user)
 	}
 	
 	

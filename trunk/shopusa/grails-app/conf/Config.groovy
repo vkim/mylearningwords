@@ -57,10 +57,10 @@ environments {
         grails.serverURL = "http://www.changeme.com"
     }
     development {
-        grails.serverURL = "http://localhost:8080/${appName}"
+        grails.serverURL = "http://123.243.65.92:8080/shopusa"
     }
     test {
-        grails.serverURL = "http://localhost:8080/${appName}"
+        grails.serverURL = "http://localhost:8080/shopusa"
     }
 
 }
@@ -143,6 +143,19 @@ You (or someone pretending to be you) created an account with this email address
 <br/>
 If you made the request, please click <a href="$url">here</a> to finish the registration.
 ''' 
+
+//PayPal settings
+environments {
+	production {
+	   grails.paypal.server = "https://www.paypal.com/cgi-bin/webscr"
+	   grails.paypal.email = "example@business.com"
+	}
+	development {
+	   grails.paypal.server = "https://www.sandbox.paypal.com/cgi-bin/webscr"
+	   grails.paypal.email = "vitali_1302611850_biz_api1.gmail.com"
+	}
+  }
+
 
 ckeditor.upload.image.browser=true
 ckeditor.upload.image.upload=true 
