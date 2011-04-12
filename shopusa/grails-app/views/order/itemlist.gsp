@@ -60,6 +60,13 @@
             <div class="paginateButtons">
                 <g:paginate total="${orderItemInstanceTotal}" />
             </div>
+            <paypal:button 
+					itemName="iPod Nano"
+					itemNumber="IPD0843403"
+					transactionId="${payment?.transId}"
+					amount="99.00"
+					buyerId="${user.id}"
+					/>
         </div>
     </body>
 </html>
