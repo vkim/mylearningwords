@@ -152,7 +152,7 @@ environments {
 	}
 	development {
 	   grails.paypal.server = "https://www.sandbox.paypal.com/cgi-bin/webscr"
-	   grails.paypal.email = "vitali_1302611850_biz_api1.gmail.com"
+	   grails.paypal.email = "vitali_1302611850_biz@gmail.com"
 	}
   }
 
