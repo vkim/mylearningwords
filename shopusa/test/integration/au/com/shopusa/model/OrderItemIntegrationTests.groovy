@@ -14,7 +14,7 @@ class OrderItemIntegrationTests extends GroovyTestCase {
 
 	void testSaveThroughOrder() {
 
-		def order = new ShipOrder(client: User.findByEmail('normal@com.au'), shippingInfo: new ShippingInfo())
+		def order = new ShipOrder(client: User.findByUsername('normal@com.au'), shippingInfo: new ShippingInfo())
 		assert order.save()
 				
 		order.addToOrderItems(new OrderItem(name: 'item3', quantity: 1))

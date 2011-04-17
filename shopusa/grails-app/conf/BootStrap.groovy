@@ -1,6 +1,7 @@
 import grails.util.Environment
-import au.com.shopusa.cms.CmsPage;
+import au.com.shopusa.cms.CmsPage
 import au.com.shopusa.model.Role
+import au.com.shopusa.model.ShipOrder
 import au.com.shopusa.model.ShippingAddress
 import au.com.shopusa.model.User
 import au.com.shopusa.model.UserRole
@@ -59,6 +60,10 @@ class BootStrap {
 
 		UserRole.create normalUser, clientRole, true
 		assert UserRole.count() == 3
+		
+		//Test orders
+		new ShipOrder(client: normalUser, status: ShipOrder.Status.OPENED, cost: 0d)
+		
 		
 		//default home page
 		new CmsPage(pageId: 'home', content: homePage).save()
