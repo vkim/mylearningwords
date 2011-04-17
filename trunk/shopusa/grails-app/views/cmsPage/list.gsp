@@ -25,7 +25,7 @@
                         
                             <g:sortableColumn property="pageId" title="${message(code: 'cmsPage.pageId.label', default: 'Page Id')}" />
                         
-                            <g:sortableColumn property="content" title="${message(code: 'cmsPage.content.label', default: 'Content')}" />
+                            <g:sortableColumn property="lastUpdated" title="${message(code: 'cmsPage.lastUpdated.label', default: 'Last updated')}" />
                         
                         </tr>
                     </thead>
@@ -37,7 +37,7 @@
                         
                             <td>${fieldValue(bean: cmsPageInstance, field: "pageId")}</td>
                         
-                            <td>${fieldValue(bean: cmsPageInstance, field: "content")}</td>
+                            <td>${fieldValue(bean: cmsPageInstance, field: "lastUpdated")}</td>
                         
                         </tr>
                     </g:each>

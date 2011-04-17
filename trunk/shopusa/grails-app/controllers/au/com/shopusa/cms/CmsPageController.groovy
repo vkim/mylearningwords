@@ -1,5 +1,8 @@
 package au.com.shopusa.cms
 
+import grails.plugins.springsecurity.Secured
+
+@Secured(['ROLE_ADMIN'])
 class CmsPageController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]

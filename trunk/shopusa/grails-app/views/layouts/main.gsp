@@ -57,6 +57,9 @@
 					<li class="current_page_item current_page_parent"><a href="<g:resource dir="/" file="home"/>">Home</a></li>
 					<li><a href="<g:resource dir="/" file="fees"/>">Fees</a></li>
 					<li><a href="<g:resource dir="/" file="about"/>">About us</a></li>
+					<sec:ifAllGranted roles="ROLE_ADMIN">
+						<li><a href="<g:resource dir="/" file="cmsPage/list"/>">Cms pages</a></li>					
+					</sec:ifAllGranted>
 				</ul>
 
 				<div class="clearer">&nbsp;</div>

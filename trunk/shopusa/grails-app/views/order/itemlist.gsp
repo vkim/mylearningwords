@@ -1,4 +1,3 @@
-
 <%@ page import="au.com.shopusa.model.OrderItem" %>
 <html>
     <head>
