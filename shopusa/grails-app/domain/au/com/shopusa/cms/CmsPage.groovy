@@ -4,6 +4,7 @@ class CmsPage {
 
 	String pageId
 	String content
+	Date lastUpdated
 
 
 	static constraints = {
