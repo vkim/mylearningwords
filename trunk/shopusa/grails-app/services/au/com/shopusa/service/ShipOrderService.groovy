@@ -53,4 +53,15 @@ class ShipOrderService {
 		
 		return ShipOrder.findAllByClient(user)
 	}
+	
+	def save(order) {
+		
+		if(order) {
+			return order.save();
+		}
+		
+		return order
+	}
+	
+	
 }

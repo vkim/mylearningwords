@@ -59,6 +59,7 @@
 					<li><a href="<g:resource dir="/" file="about"/>">About us</a></li>
 					<sec:ifAllGranted roles="ROLE_ADMIN">
 						<li><a href="<g:resource dir="/" file="cmsPage/list"/>">Cms pages</a></li>					
+						<li><a href="<g:resource dir="/" file="order/alllist"/>">All Orders</a></li>					
 					</sec:ifAllGranted>
 				</ul>
 

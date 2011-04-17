@@ -16,6 +16,20 @@ class OrderControllerTest extends ControllerUnitTestCase {
 		controller.metaClass.getCurrentUser = { new User(email:'normal@com.au') }
 	}
 	
+	
+	public void testGetAllListByAdmin() {
+		
+		//mock
+		mockDomain(ShipOrder, [new ShipOrder(), new ShipOrder(), new ShipOrder(), new ShipOrder()])
+		
+		//replay
+		def model = controller.alllist()
+		
+		//verify
+		controller.renderArgs.view = 'list'
+		assertEquals(4, model.shipOrderInstanceList.size())
+	}
+	
 	public void testCreateOrder() {
 		
 		//mock
@@ -110,6 +124,29 @@ class OrderControllerTest extends ControllerUnitTestCase {
 		//verify
 		controller.renderArgs.view = 'list'
 		assertEquals(3, model.shipOrderInstanceList.size())
+	}
+	
+	public void testUpdateOrderStatusByManager() {
+		
+		//mock
+		def mock = new MockFor(ShipOrderService)
+		mock.demand.getOrder { id ->
+			assertEquals(11, id);
+			new ShipOrder(id:11)
+		}
+		mock.demand.save { order ->
+			assertEquals(11,order.id)
+			assertEquals(14.00d, order.cost, 0)
+			order }
+		controller.shipOrderService = mock.proxyInstance();
+		
+		
+		def order = new ShipOrder(id: 11, status: ShipOrder.Status.PAYMENT_WAITING, cost: 14.00d)
+		
+		//replay
+		controller.statusupdate(order)
+		
+		//verify
 	}
 	
 }
