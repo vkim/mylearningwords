@@ -17,7 +17,7 @@ class UserIntegrationTests extends GroovyTestCase {
 		
 		def count = User.count()
 		
-		def user = new User(email: 'email@com.ru', password: 'qioewprqer', shippingAddress: new ShippingAddress())
+		def user = new User(username: 'email@com.ru', password: 'qioewprqer', shippingAddress: new ShippingAddress())
 		
 		user.save()
 

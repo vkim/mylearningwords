@@ -26,7 +26,7 @@ class OrderControllerIntegrationTests extends ControllerUnitTestCase {
 		
 		//verify
 		assertEquals 'itemlist', controller.redirectArgs.action
-		def orderlist = ShipOrder.findAllByClient(User.findByEmail('normal@com.au'))
+		def orderlist = ShipOrder.findAllByClient(User.findByUsername('normal@com.au'))
 		assertEquals(1, orderlist.size())
 		def order = orderlist.get(0)
 		assertNotNull order
