@@ -23,7 +23,7 @@ class BootStrap {
 				break
 
 			case Environment.PRODUCTION:
-				createIntegrationTestData()
+//				createIntegrationTestData()
 				break
 		}
 

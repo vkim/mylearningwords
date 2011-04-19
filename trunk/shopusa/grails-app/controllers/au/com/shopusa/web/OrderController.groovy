@@ -4,6 +4,7 @@ import grails.plugins.springsecurity.Secured
 import au.com.shopusa.model.OrderItem
 import au.com.shopusa.model.ShipOrder
 import au.com.shopusa.model.User
+import au.com.shopusa.model.ShipOrder.Status;
 import au.com.shopusa.service.ShipOrderService
 
 
@@ -71,11 +72,11 @@ class OrderController {
 		
 		params.max = Math.min(params.max ? params.int('max') : 10, 100)
 		
-		def items = shipOrderService.getItems(Long.parseLong(params.id))
-		
+		def order = ShipOrder.get(params.id)
+
 		def user = getCurrentUser();
 		
-		[orderItemInstanceList: items, orderItemInstanceTotal: items.count(), id: params.id, user: user]
+		[orderItemInstanceList: order?.orderItems, orderItemInstanceTotal: order?.orderItems?.count(), order:order, user: user]
 	}
 
     def save = {
@@ -111,16 +112,22 @@ class OrderController {
         }
     }
 
-	def statusupdate = { ShipOrder form -> 
+	def statusupdate = { OrderUpdate form -> 
 		
-		def order = shipOrderService.getOrder(form.id)
+		log.debug "Updating status order: " + form
 		
-		order.cost = form.cost;
-		order.status = form.status;
+		def order = ShipOrder.get(form.id)
 		
-		shipOrderService.save(order)
+		if(order) {
+			order.cost = form.cost;
+			order.status = form.status;
+			
+			order.save()
+			log.debug 'Status updated: ' + order.status + ' errors: ' + order.errors
+			
+		}
 		
-		redirect(action: itemlist);
+		redirect(action: itemlist, id: form.id);
 	}
 	
     def update = {
@@ -172,5 +179,15 @@ class OrderController {
 	
 	def getCurrentUser() {
 		return springSecurityService.currentUser
+	}
+}
+
+class OrderUpdate {
+	Long id;
+	Double cost;
+	Status status
+	
+	String toString() {
+		"$id, cost: $cost, status: $status"
 	}
 }
