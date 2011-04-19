@@ -59,13 +59,50 @@
             <div class="paginateButtons">
                 <g:paginate total="${orderItemInstanceTotal}" />
             </div>
-            <paypal:button 
+            <g:formatNumber number="${order?.cost}" type="number" format="########.##" minFractionDigits="2"/>
+            
+            
+            <sec:ifNotGranted roles="ROLE_ADMIN">
+            	<paypal:button 
 					itemName="iPod Nano"
 					itemNumber="IPD0843403"
 					transactionId="${payment?.transId}"
-					amount="99.00"
+					amount="${formatNumber(number:order?.cost, type:'number', format:'########.##', minFractionDigits:'2')}"
 					buyerId="${user.id}"
 					/>
+            </sec:ifNotGranted>
+            
+            <sec:ifAllGranted roles="ROLE_ADMIN">
+
+			<g:form name="statusOrderForm" action="statusupdate" id="${order.id}">
+				<table>
+				<tr class="prop">
+                        <td valign="top" class="name">
+                            <label for="cost"><g:message code="shipOrder.cost.label" default="Cost" /></label>
+                        </td>
+                        <td valign="top" class="value ${hasErrors(bean: shipOrderInstance, field: 'cost', 'errors')}">
+                            <g:textField name="cost" value="${fieldValue(bean: order, field: 'cost')}" />
+                        </td>
+                    </tr>
+				
+				<tr class="prop">
+                        <td valign="top" class="name">
+                            <label for="status"><g:message code="shipOrder.status.label" default="Status" /></label>
+                        </td>
+                        <td valign="top" class="value ${hasErrors(bean: order, field: 'status', 'errors')}">
+                            <g:select name="status" from="${au.com.shopusa.model.ShipOrder$Status?.values()}" keys="${au.com.shopusa.model.ShipOrder$Status?.values()*.name()}" value="${order?.status?.name()}"  />
+                        </td>
+                    </tr>
+                    
+                   
+				</table>	
+			
+			 	<div class="buttons">
+	                  <span class="button"><g:submitButton name="update" class="save" value="${message(code: 'default.button.update.label', default: 'Update')}" /></span>
+	              </div>
+	         </g:form>
+	         
+	       </sec:ifAllGranted>
         </div>
     </body>
 </html>

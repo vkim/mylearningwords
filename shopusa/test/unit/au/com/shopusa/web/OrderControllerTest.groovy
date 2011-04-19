@@ -86,21 +86,16 @@ class OrderControllerTest extends ControllerUnitTestCase {
 	public void testItemList() {
 		
 		//mock
-		def mock = new MockFor(ShipOrderService)
-		mock.demand.getItems { def orderId -> 
-			assertEquals(108, orderId) 
-			['',''] }
-		controller.shipOrderService = mock.proxyInstance();
+		mockDomain(ShipOrder,[new ShipOrder(id: 108, orderItems: [new OrderItem(), new OrderItem()])])
 		
 		//replay
-		controller.params.id = '108';
+		controller.params.id = 108;
 		def model = controller.itemlist()
 		
 		//verify
 		controller.renderArgs.view = 'itemlist'
-		mock.verify(controller.shipOrderService)
-		assertEquals(2, model.orderItemInstanceList.size())
-		assertEquals('108', model.id)
+		assertNotNull(model.order)
+		assertEquals(108, model.order.id)
 		assertNotNull(model.user)
 	}
 	
@@ -129,24 +124,16 @@ class OrderControllerTest extends ControllerUnitTestCase {
 	public void testUpdateOrderStatusByManager() {
 		
 		//mock
-		def mock = new MockFor(ShipOrderService)
-		mock.demand.getOrder { id ->
-			assertEquals(11, id);
-			new ShipOrder(id:11)
-		}
-		mock.demand.save { order ->
-			assertEquals(11,order.id)
-			assertEquals(14.00d, order.cost, 0)
-			order }
-		controller.shipOrderService = mock.proxyInstance();
+		mockDomain(ShipOrder, [new ShipOrder(id: 11, cost: 0)])
 		
-		
-		def order = new ShipOrder(id: 11, status: ShipOrder.Status.PAYMENT_WAITING, cost: 14.00d)
+		def order = new OrderUpdate(id: 11, status: ShipOrder.Status.PAYMENT_WAITING, cost: 14.00d)
 		
 		//replay
 		controller.statusupdate(order)
 		
 		//verify
+		assertEquals(14d, ShipOrder.get(11).cost, 0)
+		assertEquals(ShipOrder.Status.PAYMENT_WAITING, ShipOrder.get(11).status)
 	}
 	
 }
