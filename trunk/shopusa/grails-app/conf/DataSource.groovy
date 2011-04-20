@@ -40,7 +40,7 @@ environments {
         dataSource {			
 			jndiName = "java:comp/env/jdbc/shopusa"
 			dbname = "shopusa"
-            dbCreate = "update"
+            dbCreate = "create-drop"
 			username = "usershop"
 			password = "b3auty"
         }
