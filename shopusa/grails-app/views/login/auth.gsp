@@ -17,11 +17,11 @@
 	<table>
 		<tr>
 			<td><label for="username"><g:message code='spring.security.ui.login.username'/></label></td>
-			<td><input name="j_username" id="username" size="20" /></td>
+			<td><input class="text" type="text" name="j_username" id="username" size="20" /></td>
 		</tr>
 		<tr>
 			<td><label for="password"><g:message code='spring.security.ui.login.password'/></label></td>
-			<td><input type="password" name="j_password" id="password" size="20" /></td>
+			<td><input class="text" type="password" name="j_password" id="password" size="20" /></td>
 		</tr>
 		<tr>
 			<td colspan='2'>
