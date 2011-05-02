@@ -23,7 +23,7 @@
 							<a href="#">Cheap shipping <span>MobiPac</span>
 							</a>
 						</h1>
-						<h2 id="site-slogan">Another cheap shopping website</h2>
+						<h2 id="site-slogan">Cheap shipping from USA for your purchases</h2>
 					</div>
 
 					<div id="help-wrapper">
