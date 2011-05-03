@@ -25,6 +25,10 @@ class BootStrap {
 			case Environment.PRODUCTION:
 //				createIntegrationTestData()
 				break
+				
+			case Environment.CUSTOM:
+				createIntegrationTestData()
+				break
 		}
 
 	}
