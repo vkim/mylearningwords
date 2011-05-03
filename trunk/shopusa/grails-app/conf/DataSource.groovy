@@ -36,13 +36,23 @@ environments {
             url = "jdbc:mysql://localhost/$dbname?autoReconnect=true"
         }
     }
+	//upload data
+	dataprod {
+		dataSource {
+			dbname = "shopusa"
+			dbCreate = "update"
+			username = "usershop"
+			password = "dreamAbout3e"
+			url = "jdbc:mysql://ec2-75-101-156-134.compute-1.amazonaws.com:3306/$dbname"
+		}
+	}
     production {
         dataSource {			
 			jndiName = "java:comp/env/jdbc/shopusa"
 			dbname = "shopusa"
-            dbCreate = "create-drop"
+            dbCreate = "update"
 			username = "usershop"
-			password = "b3auty"
+			password = "dreamAbout3e"
         }
     }
 }
