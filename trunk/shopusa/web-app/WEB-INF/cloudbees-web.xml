@@ -2,7 +2,7 @@
  <appid>shopusa/shopusa</appid>
  <resource name="jdbc/shopusa" auth="Container" type="javax.sql.DataSource">
   <param name="username" value="usershop" />
-  <param name="password" value="b3auty" />
+  <param name="password" value="dreamAbout3e" />
   <param name="url" value="jdbc:cloudbees://shopusa" />
  </resource>
 </cloudbees-web-app>
