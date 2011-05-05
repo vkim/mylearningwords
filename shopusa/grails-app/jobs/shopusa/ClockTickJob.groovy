@@ -2,9 +2,12 @@ package shopusa
 
 
 class ClockTickJob {
-    def timeout = 5000l // execute job once in 5 seconds
-
+	
+	static triggers = {
+		simple name:'everyTwoHour', startDelay:5400000, repeatInterval: 7164000, repeatCount: -1
+	}
+	
     def execute() {
-        // execute task
+		println 'Clock ticks at: ' + new Date() 
     }
 }
