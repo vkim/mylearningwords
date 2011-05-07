@@ -116,7 +116,7 @@ class RegisterCommand {
 				}
 			}
 		}
-		password blank: false, minSize: 6, validator: RegisterController.passwordValidator
+		password blank: false, minSize: 6, maxSize: 64 
 		password2 validator: RegisterController.password2Validator
 	}
 }
