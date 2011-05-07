@@ -1,6 +1,14 @@
 <head>
 <title><g:message code='spring.security.ui.login.title'/></title>
 <meta name='layout' content='main'/>
+<g:javascript library='jquery' plugin='jquery' />
+<link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'reset.css')}"/>
+	<link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'spring-security-ui.css')}"/>
+	<jqui:resources />
+	<link rel="stylesheet" media="screen" href="${resource(dir:'css/smoothness',file:'jquery-ui-1.8.2.custom.css',plugin:'spring-security-ui')}"/>
+	<link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'jquery.jgrowl.css')}"/>
+	<link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'jquery.safari-checkbox.css')}"/>
+	<link rel="stylesheet" media="screen" href="${resource(dir:'css',file:'auth.css')}"/>
 </head>
 
 <body>
@@ -16,7 +24,7 @@
 	<table>
 		<tbody>
 			<tr>
-				<td><label for="username"><g:message code='spring.security.ui.login.username'/></label></td>
+				<td><label for="username"><g:message code='user.email.label'/></label></td>
 				<td><input class="text" type="text" name="j_username" id="username" size="20" /></td>
 			</tr>
 			<tr>
@@ -39,6 +47,7 @@
 			</tr>
 		</tbody>
 	</table>
+		<s2ui:submitButton elementId='loginButton' form='loginForm' messageCode='spring.security.ui.login.login'/>
 
 		</fieldset>
 	</form>
