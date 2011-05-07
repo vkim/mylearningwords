@@ -64,6 +64,7 @@ class OrderController {
 			redirect(action: "itemlist", id: orderId)
 		}
 		else {
+			println item.errors;
 			render(view: "additem", model: [orderItemInstance: item], id: orderId)
 		}
 	}
