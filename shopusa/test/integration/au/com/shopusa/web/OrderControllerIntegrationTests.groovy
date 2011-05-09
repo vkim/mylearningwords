@@ -13,6 +13,7 @@ class OrderControllerIntegrationTests extends ControllerUnitTestCase {
         super.setUp()
 		
 		controller = new OrderController()
+		controller.metaClass.getCurrentUser = { User.findByUsername('normal@com.au') }
     }
 
     protected void tearDown() {

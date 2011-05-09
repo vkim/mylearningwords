@@ -60,10 +60,16 @@ class BootStrap {
 		//normal user
 		def normalUser = new User(enabled: true, password: password, username: 'normal@com.au', shippingAddress: new ShippingAddress())
 		normalUser.save(flush: true)
-		assert User.count() == 2
 
 		UserRole.create normalUser, clientRole, true
-		assert UserRole.count() == 3
+		
+		//jack user
+		def jackUser = new User(enabled: true, password: password, username: 'jack@com.au', shippingAddress: new ShippingAddress())
+		jackUser.save(flush: true)
+		assert User.count() == 3
+
+		UserRole.create jackUser, clientRole, true
+		assert UserRole.count() == 4
 		
 		//Test orders
 		new ShipOrder(client: normalUser, status: ShipOrder.Status.OPENED, cost: 0d)
