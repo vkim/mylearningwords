@@ -47,6 +47,26 @@ class OrderControllerTest extends ControllerUnitTestCase {
 		mock.verify(controller.shipOrderService)
 	}
 	
+	public void testCreateOrderUnderUser() {
+		//mock
+		def mock = new MockFor(ShipOrderService)
+		mock.demand.createOrder(1..1) {User user ->
+				assertEquals("underuser@com.au", user.username)
+				new ShipOrder(id: 2) 
+			}
+		controller.shipOrderService = mock.proxyInstance();
+		controller.metaClass.getCurrentUser = { new User(username:'underuser@com.au') }
+		
+		//replay
+		def model = controller.create()
+		
+		//verify
+		assertEquals 'itemlist', controller.redirectArgs.action
+		println controller.redirectArgs
+		assertEquals 2, controller.redirectArgs.id
+		mock.verify(controller.shipOrderService)
+	}
+	
 	public void testSaveItemOrder() {
 	
 		def mock = new MockFor(ShipOrderService)
