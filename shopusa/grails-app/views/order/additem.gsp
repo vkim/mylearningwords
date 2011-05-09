@@ -65,10 +65,12 @@
                         
                         </tbody>
                     </table>
-                </fieldset>
-                <div class="buttons">
-                    <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" /></span>
+                
+                <div class="form-row form-row-submit">
+                    <div class="form-value"><g:submitButton name="create" class="button" value="${message(code: 'orderItem.button.create.label', default: 'Create')}" /></div>
                 </div>
+                
+                </fieldset>
             </g:form>
         </div>
     </body>
