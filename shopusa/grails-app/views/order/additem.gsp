@@ -25,15 +25,7 @@
                     <table>
                         <tbody>
                         	<g:hiddenField name="id" value="${id}"/>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="comment"><g:message code="orderItem.comment.label" default="Comment" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: orderItemInstance, field: 'comment', 'errors')}">
-                                    <g:textField name="comment" value="${orderItemInstance?.comment}" />
-                                </td>
-                            </tr>
+                        	<g:hiddenField name="shipOrder.id" value="${orderItemInstance?.shipOrder?.id}"/>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
@@ -55,19 +47,19 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="shipOrder"><g:message code="orderItem.shipOrder.label" default="Ship Order" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: orderItemInstance, field: 'shipOrder', 'errors')}">
-                                    <g:select name="shipOrder.id" from="${au.com.shopusa.model.ShipOrder.list()}" optionKey="id" value="${orderItemInstance?.shipOrder?.id}"  />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
                                     <label for="throwWrap"><g:message code="orderItem.throwWrap.label" default="Throw wrappings" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: orderItemInstance, field: 'throwWrap', 'errors')}">
                                     <g:checkBox name="throwWrap" value="${orderItemInstance?.throwWrap}" />
+                                </td>
+                            </tr>
+                            
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="comment"><g:message code="orderItem.comment.label" default="Comment" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: orderItemInstance, field: 'comment', 'errors')}">
+                                    <g:textField name="comment" value="${orderItemInstance?.comment}" />
                                 </td>
                             </tr>
                         
