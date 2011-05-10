@@ -19,16 +19,15 @@ class ShipOrder {
 
 	enum Status {
 		OPENED
+		,COMPLETE
 		,PAYMENT_WAITING
 		,SHIPPED
 		
 		public final String getValue() {
 			ApplicationHolder.application.getMainContext().getBean("messageSource").getMessage('shiporder.status.' + name(), null, '', Locale.ENGLISH)
 		}
-		
 	}
 	
-		
 	String toString() {
 		"$id, $client"
 	} 

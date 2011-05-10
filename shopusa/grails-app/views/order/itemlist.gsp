@@ -7,9 +7,11 @@
         <title><g:message code="default.list.label" args="[entityName]" /></title>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><g:link class="create" action="additem" params="[id: order.id]"><g:message code="orderItem.new.label" args="[entityName]" /></g:link></span>
-        </div>
+    	<g:if test="${order.status == au.com.shopusa.model.ShipOrder.Status.OPENED}">
+	        <div class="nav">
+	            <span class="menuButton"><g:link class="create" action="additem" params="[id: order.id]"><g:message code="orderItem.new.label" args="[entityName]" /></g:link></span>
+	        </div>
+	    </g:if>
         <div class="body">
             <h1><g:message code="orderItem.list.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
@@ -49,48 +51,56 @@
             <div class="paginateButtons">
                 <g:paginate total="${orderItemInstanceTotal}" />
             </div>
-            <g:formatNumber number="${order?.cost}" type="number" format="########.##" minFractionDigits="2"/>
-            
             
             <sec:ifNotGranted roles="ROLE_ADMIN">
-            	<paypal:button 
-					itemName="iPod Nano"
-					itemNumber="IPD0843403"
-					transactionId="${payment?.transId}"
-					amount="${formatNumber(number:order?.cost, type:'number', format:'########.##', minFractionDigits:'2')}"
-					buyerId="${user.id}"
-					/>
+            
+				<g:if test="${order.status == au.com.shopusa.model.ShipOrder.Status.OPENED}">
+					<g:form action="complete" id="${order.id}">
+		           		<div class="form-value"><input type="submit" class="button" value="Complete" /></div>
+		            </g:form>	
+				</g:if>            
+				<g:else>
+				
+					<g:formatNumber number="${order?.cost}" type="number" format="########.##" minFractionDigits="2"/>
+					
+					<paypal:button 
+						itemName="iPod Nano"
+						itemNumber="IPD0843403"
+						transactionId="${payment?.transId}"
+						amount="${formatNumber(number:order?.cost, type:'number', format:'########.##', minFractionDigits:'2')}"
+						buyerId="${user.id}"/>
+				</g:else>            
+            	
             </sec:ifNotGranted>
             
             <sec:ifAllGranted roles="ROLE_ADMIN">
 
-			<g:form name="statusOrderForm" action="statusupdate" id="${order.id}">
-				<table>
-				<tr class="prop">
-                        <td valign="top" class="name">
-                            <label for="cost"><g:message code="shipOrder.cost.label" default="Cost" /></label>
-                        </td>
-                        <td valign="top" class="value ${hasErrors(bean: shipOrderInstance, field: 'cost', 'errors')}">
-                            <g:textField name="cost" value="${fieldValue(bean: order, field: 'cost')}" />
-                        </td>
-                    </tr>
+				<g:form name="statusOrderForm" action="statusupdate" id="${order.id}">
+					<table>
+					<tr class="prop">
+	                        <td valign="top" class="name">
+	                            <label for="cost"><g:message code="shipOrder.cost.label" default="Cost" /></label>
+	                        </td>
+	                        <td valign="top" class="value ${hasErrors(bean: shipOrderInstance, field: 'cost', 'errors')}">
+	                            <g:textField name="cost" value="${fieldValue(bean: order, field: 'cost')}" />
+	                        </td>
+	                    </tr>
+					
+					<tr class="prop">
+	                        <td valign="top" class="name">
+	                            <label for="status"><g:message code="shipOrder.status.label" default="Status" /></label>
+	                        </td>
+	                        <td valign="top" class="value ${hasErrors(bean: order, field: 'status', 'errors')}">
+	                            <g:select name="status" from="${au.com.shopusa.model.ShipOrder$Status?.values()}" keys="${au.com.shopusa.model.ShipOrder$Status?.values()*.name()}" value="${order?.status?.name()}"  />
+	                        </td>
+	                    </tr>
+	                    
+					</table>	
 				
-				<tr class="prop">
-                        <td valign="top" class="name">
-                            <label for="status"><g:message code="shipOrder.status.label" default="Status" /></label>
-                        </td>
-                        <td valign="top" class="value ${hasErrors(bean: order, field: 'status', 'errors')}">
-                            <g:select name="status" from="${au.com.shopusa.model.ShipOrder$Status?.values()}" keys="${au.com.shopusa.model.ShipOrder$Status?.values()*.name()}" value="${order?.status?.name()}"  />
-                        </td>
-                    </tr>
-                    
-                   
-				</table>	
-			
-			 	<div class="buttons">
-	                  <span class="button"><g:submitButton name="update" class="save" value="${message(code: 'default.button.update.label', default: 'Update')}" /></span>
-	              </div>
-	         </g:form>
+				 	<div class="buttons">
+		                  <span class="button"><g:submitButton name="update" class="save" value="${message(code: 'default.button.update.label', default: 'Update')}" /></span>
+		              </div>
+		         </g:form>
 	         
 	       </sec:ifAllGranted>
         </div>

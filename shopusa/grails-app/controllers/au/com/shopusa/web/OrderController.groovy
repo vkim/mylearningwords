@@ -79,6 +79,18 @@ class OrderController {
 		
 		[orderItemInstanceList: order?.orderItems, orderItemInstanceTotal: order?.orderItems?.count(), order:order, user: user]
 	}
+	
+	def complete = {
+		
+		def order = ShipOrder.get(params.id)
+		
+		if(order) {
+			order.status = ShipOrder.Status.COMPLETE
+			order.save()
+		}
+		
+		redirect(action: 'itemlist', id: params.id);
+	}
 
     def save = {
         def orderItemInstance = new OrderItem(params)
@@ -128,7 +140,7 @@ class OrderController {
 			
 		}
 		
-		redirect(action: itemlist, id: form.id);
+		redirect(action: 'itemlist', id: form.id);
 	}
 	
     def update = {
