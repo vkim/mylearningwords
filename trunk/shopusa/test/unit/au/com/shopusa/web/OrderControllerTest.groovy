@@ -156,4 +156,19 @@ class OrderControllerTest extends ControllerUnitTestCase {
 		assertEquals(ShipOrder.Status.PAYMENT_WAITING, ShipOrder.get(11).status)
 	}
 	
+	public void testCompleteStatusChange() {
+		
+		//mock
+		mockDomain(ShipOrder, [new ShipOrder(id: 12, status: ShipOrder.Status.OPENED)])
+		
+		controller.params.id = "12"
+		
+		//replay
+		controller.complete()
+		
+		//verify
+		assertEquals(ShipOrder.Status.COMPLETE, ShipOrder.get(12)?.status)
+		assertEquals 'itemlist', controller.redirectArgs.action
+	}
+	
 }
