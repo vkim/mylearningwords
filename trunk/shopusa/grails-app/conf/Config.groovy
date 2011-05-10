@@ -69,8 +69,8 @@ grails {
 	mail {
 	  host = "smtp.gmail.com"
 	  port = 465
-	  username = "vitaliy.kim@gmail.com"
-	  password = "manon1herun"
+	  username = "info@buycheaper.com.au"
+	  password = "gamesofthrone"
 	  props = ["mail.smtp.auth":"true",
 			   "mail.smtp.socketFactory.port":"465",
 			   "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
@@ -159,3 +159,5 @@ environments {
 
 ckeditor.upload.image.browser=true
 ckeditor.upload.image.upload=true 
+
+google.analytics.webPropertyID = "UA-23241603-1"
