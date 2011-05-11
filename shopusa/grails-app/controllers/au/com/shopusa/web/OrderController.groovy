@@ -189,6 +189,13 @@ class OrderController {
         }
     }
 	
+	def address = {
+		
+		def order = ShipOrder.get(params.id)
+		
+		[order: order]
+	}
+	
 	
 	def getCurrentUser() {
 		return springSecurityService.currentUser
