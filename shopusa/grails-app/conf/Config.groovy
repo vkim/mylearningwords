@@ -160,4 +160,4 @@ environments {
 ckeditor.upload.image.browser=true
 ckeditor.upload.image.upload=true 
 
-google.analytics.webPropertyID = "UA-23241603-1"
+google.analytics.webPropertyID = 'UA-23241603-1'
