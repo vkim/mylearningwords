@@ -12,6 +12,8 @@
 			width: 160px;
 			text-align: right;
 			margin-right: 9px;
+			margin-top: 0.5em;			
+			padding: 4px;
 		}
         
         </style>
@@ -36,51 +38,49 @@
 					<fieldset>
 						<div class="form-row">
 							
-							<div class="form-value"><label>Full name </label><input type="text" size="32" name="email" value="" class="text" /></div>
+							<div class="form-value"><label>Full name </label><input type="text" size="32" name="fullname" value="" class="text" /></div>
 
 						</div>
 						
 						<div class="form-row">
 							
-							<div class="form-value"><label>Street address</label><input type="text" size="32" name="website" value="" class="text" /></div>
+							<div class="form-value"><label>Street address</label><input type="text" size="32" name="addressLine" value="" class="text" /></div>
 
 						</div>
 
 						<div class="form-row">
 							
-							<div class="form-value"><label>City</label><input type="text" size="32" name="name" value="" class="text" /></div>
-
-						</div>
-						
-						<div class="form-row">
-							
-							<div class="form-value"><label>Postcode</label><input type="text" size="32" name="name" value="" class="text" /></div>
-
-						</div>
-
-						<div class="form-row">
-							
-							<div class="form-value"><label>Suburb</label><input type="text" size="32" name="website" value="" class="text" /></div>
+							<div class="form-value"><label>City</label><input type="text" size="32" name="city" value="" class="text" /></div>
 
 						</div>
 						
 						<div class="form-row">
 							
-							<div class="form-value"><label>State</label><input type="text" size="32" name="website" value="" class="text" /></div>
+							<div class="form-value"><label>Postcode</label><input type="text" size="32" name="postcode" value="" class="text" /></div>
+
+						</div>
+
+						<div class="form-row">
+							
+							<div class="form-value"><label>Suburb</label><input type="text" size="32" name="suburb" value="" class="text" /></div>
 
 						</div>
 						
 						<div class="form-row">
 							
-							<div class="form-value"><label>Contact Phone</label><input type="text" size="32" name="website" value="" class="text" /></div>
+							<div class="form-value"><label>State</label><input type="text" size="32" name="state" value="" class="text" /></div>
+
+						</div>
+						
+						<div class="form-row">
+							
+							<div class="form-value"><label>Contact Phone</label><input type="text" size="32" name="contactPhone" value="" class="text" /></div>
 
 						</div>
 
 						<div class="form-row form-row-submit">
 							
-							<div class="form-value"><input type="submit" class="button" value="Submit Comment &#187;" /></div>
-
-							<div class="clearer">&nbsp;</div>
+							<div class="form-value"><label></label><input type="submit" class="button" value="Save &#187;" /></div>
 
 						</div>
 					
