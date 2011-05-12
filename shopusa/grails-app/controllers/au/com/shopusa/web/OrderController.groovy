@@ -80,18 +80,6 @@ class OrderController {
 		[orderItemInstanceList: order?.orderItems, orderItemInstanceTotal: order?.orderItems?.count(), order:order, user: user]
 	}
 	
-	def complete = {
-		
-		def order = ShipOrder.get(params.id)
-		
-		if(order) {
-			order.status = ShipOrder.Status.COMPLETE
-			order.save()
-		}
-		
-		redirect(action: 'itemlist', id: params.id);
-	}
-
     def save = {
         def orderItemInstance = new OrderItem(params)
         if (orderItemInstance.save(flush: true)) {
@@ -188,12 +176,28 @@ class OrderController {
             redirect(action: "list")
         }
     }
-	
-	def address = {
+
+	def complete = {
+		
+		def order = ShipOrder.get(params.id)
+		
+		if(order) {
+			order.status = ShipOrder.Status.COMPLETE
+			order.save()
+		}
+		
+		redirect(action: 'itemlist', id: params.id);
+	}
+		
+	def addressform = {
 		
 		def order = ShipOrder.get(params.id)
 		
 		[order: order]
+	}
+	
+	def address = {
+		
 	}
 	
 	
