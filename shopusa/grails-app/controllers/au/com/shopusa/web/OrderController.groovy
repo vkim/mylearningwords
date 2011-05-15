@@ -191,12 +191,19 @@ class OrderController {
 		
 	def addressform = {
 		
-		def order = ShipOrder.get(params.id)
+		def form = new ShippingAddressCommand(id: params.id)
 		
-		[order: order]
+		render(view:'address', model: [shipinfo: form])
 	}
 	
-	def address = {
+	def address = { ShippingAddressCommand form ->
+		
+		if (form.hasErrors()) {
+			render(view: "address", model: [shipinfo: form])
+		}
+		else {
+			redirect(action: "complete", id: form.id)
+		}
 		
 	}
 	
@@ -215,3 +222,27 @@ class OrderUpdate {
 		"$id, cost: $cost, status: $status"
 	}
 }
+
+class ShippingAddressCommand { 
+	
+	Long id
+	String fullname
+	String addressLine
+	String city
+	String postcode
+	String suburb
+	String state
+	String contactPhone
+	
+	
+	static constraints = {
+		fullname(blank: false)
+		addressLine(blank: false)
+		postcode(blank: false)
+		suburb(blank: false)
+		state(blank: false)
+		contactPhone(blank: false)
+	}
+	
+}
+	

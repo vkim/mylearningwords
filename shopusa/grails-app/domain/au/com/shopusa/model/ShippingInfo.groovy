@@ -13,11 +13,12 @@ class ShippingInfo {
 	ShipOrder shipOrder
 	
     static constraints = {
-		fullname(blank: false)
-		addressLine(blank: false)
-		postcode(blank: false)
-		suburb(blank: false)
-		state(blank: false)
-		contactPhone(blank: false)
+		fullname(nullable: true)
+		addressLine(nullable: true)
+		city(nullable: true)
+		postcode(nullable: true)
+		suburb(nullable: true)
+		state(nullable: true)
+		contactPhone(nullable: true)
     }
 }
