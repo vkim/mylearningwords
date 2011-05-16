@@ -190,9 +190,9 @@ class OrderController {
 		
 	def addressform = {
 		
-		def form = new ShippingAddressCommand(id: params.id)
+		def form = new ShippingAddressCommand()
 		
-		println params.id
+		bindData(form, params, [include:['id']])
 		
 		render(view:'address', model: [shipinfo: form])
 	}

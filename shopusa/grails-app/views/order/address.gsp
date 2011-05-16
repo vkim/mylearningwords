@@ -27,6 +27,7 @@
             </g:if>
 				            
             <g:form action="address" id="${shipinfo?.id}">
+            	<g:hiddenField name="shipinfo.id" value="${shipinfo?.id}"/>
 				<fieldset>
 					<div class="form-row">
 						<div class="form-value ${hasErrors(bean: shipinfo, field: 'fullname', 'error')}"><label>Full name </label>
