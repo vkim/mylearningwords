@@ -3,16 +3,23 @@ package au.com.shopusa.web;
 import static org.junit.Assert.*
 import grails.test.ControllerUnitTestCase
 import groovy.mock.interceptor.MockFor
+
+import org.junit.Before
+import org.junit.Test
+
 import au.com.shopusa.model.*
 import au.com.shopusa.service.ShipOrderService
 
 class OrderControllerTest extends ControllerUnitTestCase {
 
+	@Before
 	public void setUp() {
 		super.setUp()
 		mockDomain OrderItem
 		mockDomain User
-		
+
+		mockCommandObject(ShippingAddressCommand)
+				
 		controller.metaClass.getCurrentUser = { new User(email:'normal@com.au') }
 	}
 	
@@ -171,4 +178,40 @@ class OrderControllerTest extends ControllerUnitTestCase {
 		assertEquals 'itemlist', controller.redirectArgs.action
 	}
 	
+	void testShippingAddressConstraints() {
+
+		def form = new ShippingAddressCommand()
+		assertFalse form.validate()
+		assertEquals 7, form.errors.errorCount
+		assertEquals "nullable", form.errors["suburb"]
+		assertEquals "nullable", form.errors["state"]
+		
+		
+		form = new ShippingAddressCommand(suburb: '', state: '')
+		assertFalse form.validate()
+		assertEquals 7, form.errors.errorCount
+		assertEquals "blank", form.errors["suburb"]
+		assertEquals "blank", form.errors["state"]
+		
+		form = new ShippingAddressCommand(suburb: 'kingsford', state: 'nsw')
+		assertFalse form.validate()
+		assertEquals 5, form.errors.errorCount
+	}
+	
+	void testAddShippingAddressToOrderInformation() {
+		
+		def info = new ShippingInfo()
+		def order = new ShipOrder(id: 5, shippingInfo: info)
+		info.shipOrder = order
+		mockDomain ShippingInfo, [info]
+		mockDomain ShipOrder, [order]
+		
+		//replay
+		controller.address(new ShippingAddressCommand(id: 5, fullname: 'vitaliy', addressLine: 'my address'
+			, postcode: '2032', city: 'sydney', suburb: 'kingsford', state: 'nsw', contactPhone: '1320000'))
+		
+		//verify
+		assertEquals('vitaliy', ShipOrder.get(5)?.shippingInfo.fullname)
+	}
+
 }

@@ -3,8 +3,8 @@ package au.com.shopusa.web
 import grails.plugins.springsecurity.Secured
 import au.com.shopusa.model.OrderItem
 import au.com.shopusa.model.ShipOrder
-import au.com.shopusa.model.User
-import au.com.shopusa.model.ShipOrder.Status;
+import au.com.shopusa.model.ShippingInfo
+import au.com.shopusa.model.ShipOrder.Status
 import au.com.shopusa.service.ShipOrderService
 
 
@@ -64,7 +64,6 @@ class OrderController {
 			redirect(action: "itemlist", id: orderId)
 		}
 		else {
-			println item.errors;
 			render(view: "additem", model: [orderItemInstance: item], id: orderId)
 		}
 	}
@@ -193,16 +192,35 @@ class OrderController {
 		
 		def form = new ShippingAddressCommand(id: params.id)
 		
+		println params.id
+		
 		render(view:'address', model: [shipinfo: form])
 	}
 	
 	def address = { ShippingAddressCommand form ->
 		
-		if (form.hasErrors()) {
-			render(view: "address", model: [shipinfo: form])
+		def order
+		if (form.validate() && (order = ShipOrder.get(form.id))!= null) {
+			
+			def info = order.shippingInfo
+			if(!info) {
+				info = new ShippingInfo(shipOrder: order)
+			}
+			
+			info.fullname = form.fullname
+			info.addressLine = form.addressLine
+			info.city = form.city
+			info.postcode = form.postcode
+			info.suburb = form.suburb
+			info.state = form.state
+			info.contactPhone = form.contactPhone
+			
+			info.save()
+			
+			redirect(action: "complete", id: form.id)
 		}
 		else {
-			redirect(action: "complete", id: form.id)
+			render(view: "address", model: [shipinfo: form])
 		}
 		
 	}
@@ -234,14 +252,14 @@ class ShippingAddressCommand {
 	String state
 	String contactPhone
 	
-	
 	static constraints = {
-		fullname(blank: false)
-		addressLine(blank: false)
-		postcode(blank: false)
-		suburb(blank: false)
-		state(blank: false)
-		contactPhone(blank: false)
+		fullname(nullable: false, blank: false)
+		addressLine(nullable: false, blank: false)
+		city(nullable: false, blank: false)
+		postcode(nullable: false, blank: false)
+		suburb(nullable: false, blank: false)
+		state(nullable: false, blank: false)
+		contactPhone(nullable: false, blank: false)
 	}
 	
 }
