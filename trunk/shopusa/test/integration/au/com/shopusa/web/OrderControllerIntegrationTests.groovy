@@ -46,4 +46,5 @@ class OrderControllerIntegrationTests extends ControllerUnitTestCase {
 		assertEquals 'itemlist', controller.redirectArgs.action
 		assertEquals(1, ShipOrder.get(order.id).orderItems.size())
     }
+	
 }
