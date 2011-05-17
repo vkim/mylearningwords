@@ -161,3 +161,8 @@ ckeditor.upload.image.browser=true
 ckeditor.upload.image.upload=true 
 
 google.analytics.webPropertyID = 'UA-23241603-1'
+
+//CloudBees
+cloudbees.api.url='https://api.cloudbees.com/api'
+cloudbees.api.key='8EAB9B1F46075707'
+cloudbees.api.secret='HB4MOWKXHFIFLZ+F+K3+KWPSYQYJOJ1OX6AHTEUSEKY='
