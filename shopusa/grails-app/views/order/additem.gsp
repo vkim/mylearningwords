@@ -20,12 +20,10 @@
                 <g:renderErrors bean="${orderItemInstance}" as="list" />
             </div>
             </g:hasErrors>
-            <g:form action="saveitem" >
+            <g:form action="saveitem" id="${id}">
                 <fieldset>
                     <table>
                         <tbody>
-                        	<g:hiddenField name="id" value="${id}"/>
-                        	<g:hiddenField name="shipOrder.id" value="${orderItemInstance?.shipOrder?.id}"/>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">

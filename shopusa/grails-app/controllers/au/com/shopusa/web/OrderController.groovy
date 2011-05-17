@@ -7,7 +7,7 @@ import au.com.shopusa.model.ShippingInfo
 import au.com.shopusa.model.ShipOrder.Status
 import au.com.shopusa.service.ShipOrderService
 
-
+@Secured(['ROLE_CLIENT'])
 class OrderController {
 	
 	ShipOrderService shipOrderService
@@ -43,6 +43,7 @@ class OrderController {
 		def order = shipOrderService.createOrder(getCurrentUser())
 		
 		log.debug 'Order created, id = ' + order.id
+		log.debug 'errors: ' + order.errors
 		
 		redirect(action: "itemlist", id: order.id)
     }
@@ -60,11 +61,14 @@ class OrderController {
 		
 		def orderId = params.id
 		
-		if(shipOrderService.addOrderItem(orderId, item)) {
+		item = shipOrderService.addOrderItem(orderId, item)
+		
+		if(item && !item.hasErrors()) {
 			redirect(action: "itemlist", id: orderId)
 		}
 		else {
-			render(view: "additem", model: [orderItemInstance: item], id: orderId)
+
+			render(view: "additem", model: [orderItemInstance: item, id: orderId])
 		}
 	}
 	

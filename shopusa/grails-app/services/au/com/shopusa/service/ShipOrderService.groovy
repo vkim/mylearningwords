@@ -19,21 +19,24 @@ class ShipOrderService {
 		return order
 	}
 	
-    ShipOrder addOrderItem(orderid, OrderItem item) {
+    OrderItem addOrderItem(orderid, OrderItem item) {
 		
 		log.debug('adding item to order: ' + orderid + ' with item: ' + item);
 		
-		if(!orderid) {
-			return null 
+		def order
+		
+		if(!orderid || (order = ShipOrder.get(orderid)) == null) {
+			return item 
 		}
 		
-		def order = ShipOrder.get(orderid)
+		item.shipOrder = order
 		
-		order.addToOrderItems(item)
-		order.save()
+		if(item && item.validate()) {
+			item.save()
+		}
 		
 		log.info 'OrderItem added to order: ' + order
-		return order;		
+		return item;		
     }
 	
 	def getItems(orderId) {

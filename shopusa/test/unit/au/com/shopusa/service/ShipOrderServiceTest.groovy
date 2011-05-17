@@ -18,7 +18,7 @@ class ShipOrderServiceTest extends GrailsUnitTestCase {
 		
 		mockDomain User
 		mockDomain ShipOrder	
-		mockDomain(OrderItem)
+		mockDomain OrderItem
 
 		mockLogging ShipOrderService
 				
@@ -29,7 +29,7 @@ class ShipOrderServiceTest extends GrailsUnitTestCase {
 	}
 	
 	
-	public void testCreateOrder() {
+	void testCreateOrder() {
 		
 		//replay
 		def order = service.createOrder(user)
@@ -37,22 +37,40 @@ class ShipOrderServiceTest extends GrailsUnitTestCase {
 		//verify
 		assertNotNull(order)
 		assertNotNull order.id
+		assertFalse order.hasErrors()
 	}
 	
 	public void testAddOrderItem() {
 		
 		def order = new ShipOrder(id: 1, client: user, shippingInfo: new ShippingInfo())
 		//mock
-		mockDomain(ShipOrder, [order]) 
+		mockDomain(ShipOrder, [order])
+		mockDomain(OrderItem) 
 		
 		OrderItem item = new OrderItem(name: 'test item1', quantity: 1)
 		
 		//replay
-		order = service.addOrderItem(order.id, item)
+		assertNotNull service.addOrderItem(order.id, item)
 		
 		//verify
-		assertNotNull order
-		assert order.orderItems.size() == 1
+		println item.errors
+		assert OrderItem.count() == 1
+	}
+	
+	void testAddOrderItemWithoutRequiredFields() {
+		
+		def order = new ShipOrder(id: 1, client: user, shippingInfo: new ShippingInfo())
+		//mock
+		mockDomain(ShipOrder, [order])
+		
+		OrderItem item = new OrderItem()
+		
+		//replay
+		item = service.addOrderItem(order.id, item)
+			
+		//verify
+		assert item		
+		assertTrue item.hasErrors()
 	}
 	
 	public void testGetItems() {

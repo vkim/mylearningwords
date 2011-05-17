@@ -13,10 +13,12 @@ class OrderItem implements Serializable {
 	
 	
     static constraints = {
+		name(nullable: false, blank: false)
+		quantity(nullable: false)
     }
 	
 	String toString() {
-		"$name, $comment"
+		"$name, $quantity"
 	}
 	
 }

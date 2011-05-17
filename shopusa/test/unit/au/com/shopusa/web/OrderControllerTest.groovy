@@ -16,6 +16,7 @@ class OrderControllerTest extends ControllerUnitTestCase {
 	public void setUp() {
 		super.setUp()
 		mockDomain OrderItem
+		mockDomain ShipOrder
 		mockDomain User
 
 		mockCommandObject(ShippingAddressCommand)
@@ -76,8 +77,10 @@ class OrderControllerTest extends ControllerUnitTestCase {
 	
 	public void testSaveItemOrder() {
 	
+		mockDomain(OrderItem)
+		
 		def mock = new MockFor(ShipOrderService)
-		mock.demand.addOrderItem(1..1) {def orderId, OrderItem item -> new ShipOrder() }
+		mock.demand.addOrderItem(1..1) {def orderId, OrderItem item -> new OrderItem() }
 		
 		controller.shipOrderService = mock.proxyInstance(); 
 		
@@ -92,7 +95,7 @@ class OrderControllerTest extends ControllerUnitTestCase {
 		assertEquals 1, controller.redirectArgs.id
 	}
 	
-	public void testSaveItemOrderWithError() { 
+	public void testSaveItemOrderWithErrorFromService() { 
 		
 		def mock = new MockFor(ShipOrderService)
 		mock.demand.addOrderItem(1..1) {def orderId, OrderItem item -> null }
@@ -107,7 +110,7 @@ class OrderControllerTest extends ControllerUnitTestCase {
 		//verify
 		mock.verify(controller.shipOrderService)
 		assertEquals 'additem', controller.renderArgs.view
-		assertEquals 2, controller.renderArgs.id
+		assertEquals 2, controller.renderArgs.model.id
 	}
 	
 	public void testItemList() {
