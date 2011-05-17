@@ -55,9 +55,14 @@
             <sec:ifNotGranted roles="ROLE_ADMIN">
             
 				<g:if test="${order.status == au.com.shopusa.model.ShipOrder.Status.OPENED}">
-					<g:form action="addressform" id="${order.id}">
-		           		<div class="form-value"><input type="submit" class="button" value="Complete" /></div>
-		            </g:form>	
+				
+					<g:if test="${order.orderItems?.size() > 0 }">
+						<g:form action="addressform" id="${order.id}">
+			           		<div class="form-value"><input type="submit" class="button" value="Complete" /></div>
+			            </g:form>
+						
+					</g:if>
+		            	
 				</g:if>            
 				<g:else>
 				
