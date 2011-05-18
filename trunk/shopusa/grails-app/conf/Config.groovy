@@ -148,7 +148,7 @@ If you made the request, please click <a href="$url">here</a> to finish the regi
 environments {
 	production {
 	   grails.paypal.server = "https://www.paypal.com/cgi-bin/webscr"
-	   grails.paypal.email = "example@business.com"
+	   grails.paypal.email = "pavin_au@yahoo.com"
 	}
 	development {
 	   grails.paypal.server = "https://www.sandbox.paypal.com/cgi-bin/webscr"
