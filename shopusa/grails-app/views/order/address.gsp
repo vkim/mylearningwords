@@ -42,7 +42,7 @@
 					</div>
 
 					<div class="form-row">
-						<div class="form-value ${hasErrors(bean: shipinfo, field: 'city', 'error')}"><label>City </label>
+						<div class="form-value ${hasErrors(bean: shipinfo, field: 'city', 'error')}"><label>Suburb or City </label>
 							<g:textField  size="32" name="city" value="${fieldValue(bean: shipinfo, field: 'city')}" class="text" />
 						</div>
 					</div>
@@ -53,12 +53,6 @@
 						</div>
 					</div>
 
-					<div class="form-row">
-						<div class="form-value ${hasErrors(bean: shipinfo, field: 'suburb', 'error')}"><label>Suburb </label>
-							<g:textField  size="32" name="suburb" value="${fieldValue(bean: shipinfo, field: 'suburb')}" class="text" />
-						</div>
-					</div>
-					
 					<div class="form-row">
 						<div class="form-value ${hasErrors(bean: shipinfo, field: 'state', 'error')}"><label>State </label>
 							<g:textField  size="32" name="state" value="${fieldValue(bean: shipinfo, field: 'state')}" class="text" />
