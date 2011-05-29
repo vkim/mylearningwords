@@ -30,7 +30,7 @@
                                     <label for="name"><g:message code="orderItem.name.label" default="Name" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: orderItemInstance, field: 'name', 'errors')}">
-                                    <g:textField name="name" value="${orderItemInstance?.name}" />
+                                    <g:textField name="name" size="40" value="${orderItemInstance?.name}" />
                                 </td>
                             </tr>
                         
@@ -57,7 +57,7 @@
                                     <label for="comment"><g:message code="orderItem.comment.label" default="Comment" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: orderItemInstance, field: 'comment', 'errors')}">
-                                    <g:textField name="comment" value="${orderItemInstance?.comment}" />
+                                    <g:textArea name="comment" cols="40" rows="4" value="${orderItemInstance?.comment}" />
                                 </td>
                             </tr>
                         
