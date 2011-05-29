@@ -491,6 +491,16 @@ ul.tabbed a {text-decoration: none;}
 #navigation li.current_page_item a {background: url('../img/navigation-arrow-2.gif') no-repeat center bottom;}
 #navigation li.current_page_parent a {background: url('../img/navigation-arrow.gif') no-repeat center bottom;}
 
+#navigation li.logged {float: right;}
+
+#logged  {
+	color: #EAE6DD;
+	display: block;
+	font-weight: bold;
+	font-size: 1.3em;
+	padding: 12px 12px 11px;
+	}
+
 
 /* Subnav */
 
