@@ -261,7 +261,7 @@ class ShippingAddressCommand {
 		addressLine(nullable: false, blank: false)
 		city(nullable: false, blank: false)
 		postcode(nullable: false, blank: false)
-		suburb(nullable: false, blank: false)
+		suburb(nullable: true)
 		state(nullable: false, blank: false)
 		contactPhone(nullable: false, blank: false)
 	}

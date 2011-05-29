@@ -9,6 +9,9 @@ class ShipOrder {
 	User client
 	Status status = Status.OPENED
 	
+	Date dateCreated
+	Date lastUpdated
+	
     static constraints = {
 		status(blank:false)
     }
