@@ -67,6 +67,9 @@
 						<li><a href="<g:resource dir="/" file="order/alllist"/>">All Orders</a></li>					
 					</sec:ifAllGranted>
 					
+					<sec:ifLoggedIn>
+						<li class="logged"><div id="logged"><sec:username/></div></li>
+					</sec:ifLoggedIn>
 				</ul>
 
 				<div class="clearer">&nbsp;</div>
