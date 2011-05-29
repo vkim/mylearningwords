@@ -170,7 +170,6 @@ REQUEST INFO: ${params}
 			url << "cmd=_xclick&"
 			url << "business=$login&"
 			url << "item_name=${payment.paymentItems[0].itemName}&"
-			url << "item_number=${payment.paymentItems[0].itemNumber}&"
 			url << "quantity=${payment.paymentItems[0].quantity}&"
 			url << "amount=${payment.paymentItems[0].amount}&"
 			url << "tax=${payment.tax}&"
@@ -184,6 +183,7 @@ REQUEST INFO: ${params}
 			redirect(url: url)
 		}
 		else {
+			println payment.errors
 			flash.payment = payment
 			redirect(url: params.originalURL)
 		}
@@ -243,7 +243,6 @@ REQUEST INFO: ${params}
 		payment.paymentItems.eachWithIndex {paymentItem, i ->
 			def itemId = i + 1
 			url << "item_name_${itemId}=${paymentItem.itemName}&"
-			url << "item_number_${itemId}=${paymentItem.itemNumber}&"
 			url << "quantity_${itemId}=${paymentItem.quantity}&"
 			url << "amount_${itemId}=${paymentItem.amount}&"
 		}

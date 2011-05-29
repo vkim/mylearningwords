@@ -12,11 +12,10 @@ class PaypalTagLib {
 	def button = { attrs ->
 		def config = grailsApplication.config.grails.paypal
 		def itemName = attrs.itemName
-		def itemNumber = attrs.itemNumber
 		def amount = attrs.amount
 		def tax = attrs.tax ?: "0.0"
 		def buyerId = attrs.buyerId
-		def buttonSrc = attrs.buttonSrc ?: "https://www.paypal.com/en_US/i/btn/btn_buynow_LG.gif"
+		def buttonSrc = attrs.buttonSrc ?: "https://www.paypal.com/en_US/i/btn/x-click-but3.gif"
 		def buttonAlt = attrs.buttonAlt ?: "PayPal - The safer, easier way to pay online!"
 		def currency = attrs.currency ?: Currency.getInstance("AUD")
 		def returnAction = attrs.returnAction ? "${hiddenField(name:'returnAction', value:attrs.returnAction)}" : ""
@@ -31,8 +30,8 @@ class PaypalTagLib {
 		if(!config.server || !config.email) {
 			out << '<div style="border:1px solid red; padding:5px;">Paypal is miconfigured. You need to specify the "grails.paypal.server" and "grails.paypal.email" variables</div>'
 		}
-		else if(!itemNumber || !itemName || !amount || !buyerId) {
-			out << "<div style=\"border:1px solid red; padding:5px;\">Paypal button error: One of required attributes missing (itemName=${itemName}, itemNumber=${itemNumber}, amount=${amount} or buyerId=${buyerId})</div>"
+		else if(!itemName || !amount || !buyerId) {
+			out << "<div style=\"border:1px solid red; padding:5px;\">Paypal button error: One of required attributes missing (itemName=${itemName}, amount=${amount} or buyerId=${buyerId})</div>"
 		}
 		else {
 			def formParams = [:]
@@ -45,7 +44,6 @@ class PaypalTagLib {
 					${additionalParams}
 					${originalURL}
 					${hiddenField(name:'itemName', value:itemName)}
-					${hiddenField(name:'itemNumber', value:itemNumber)}
 					${hiddenField(name:'amount', value:amount)}
 					${hiddenField(name:'tax', value:tax)}
 					${hiddenField(name:'buyerId', value:buyerId)}

@@ -10,6 +10,6 @@ class PaymentItem implements Serializable {
 
 	static constraints = {
 		itemName blank:false
-		itemNumber blank:false
+		itemNumber nullable: true
 	}
 }

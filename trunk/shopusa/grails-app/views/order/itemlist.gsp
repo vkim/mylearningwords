@@ -69,8 +69,7 @@
 					<g:formatNumber number="${order?.cost}" type="number" format="########.##" minFractionDigits="2"/>
 					
 					<paypal:button 
-						itemName="iPod Nano"
-						itemNumber="IPD0843403"
+						itemName="Shipping fee for order N ${order.id}"
 						transactionId="${payment?.transId}"
 						amount="${formatNumber(number:order?.cost, type:'number', format:'########.##', minFractionDigits:'2')}"
 						buyerId="${user.id}"/>
