@@ -1,0 +1,1 @@
+Maintain all new words dictionary
